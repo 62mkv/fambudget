@@ -1,0 +1,167 @@
+{
+  "dimensions": [
+    {
+      "name": "subject",
+      "levels": [
+        {
+          "name": "subject",
+          "label": "Subject",
+          "attributes": [
+            "subject"
+          ]
+        }
+      ],
+      "label": "Subject"
+    },
+    {
+      "name": "item",
+      "levels": [
+        {
+          "name": "category",
+          "label": "Category",
+          "attributes": [
+            "category"
+          ]
+        },
+        {
+          "name": "subcount1",
+          "label": "Sub-category",
+          "attributes": [
+            "subcount1"
+          ]
+        },
+        {
+          "name": "subcount2",
+          "label": "Sub-category 2",
+          "attributes": [
+            "subcount2"
+          ]
+        }
+      ],
+      "label": "Item"
+    },
+    {
+      "name": "currency",
+      "levels": [
+        {
+          "name": "currency",
+          "label": "Currency",
+          "attributes": [
+            "currency"
+          ]
+        }
+      ],
+      "label": "Currency"
+    },
+    {
+      "name": "date_base_full",
+      "label": "Date Base Full",
+      "role": "time",
+      "info": {
+        "cv-datefilter-hierarchy": "daily"
+      },
+      "levels": [
+        {
+          "name": "year",
+          "label": "Year",
+          "role": "year"
+        },
+        {
+          "name": "quarter",
+          "label": "Quarter"
+        },
+        {
+          "name": "month",
+          "label": "Month"
+        },
+        {
+          "name": "week",
+          "label": "Week",
+          "role": "week"
+        },
+        {
+          "name": "day",
+          "label": "Day",
+          "role": "day"
+        }
+      ],
+      "hierarchies": [
+        {
+          "name": "weekly",
+          "label": "Weekly",
+          "levels": [
+            "year",
+            "month",
+            "week"
+          ]
+        },
+        {
+          "name": "daily",
+          "label": "Daily",
+          "levels": [
+            "month",
+            "week",
+            "day"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "spent_on",
+      "template": "date_base_full",
+      "label": "Spent On"
+    }
+  ],
+  "cubes": [
+    {
+      "name": "fambudget",
+      "label": "Family Budget",
+      "dimensions": [
+        "subject",
+        "item",
+        "spent_on",
+        "currency"
+      ],
+      "measures": [
+        {
+          "name": "amount",
+          "label": "Amount"
+        }
+      ],
+      "aggregates": [
+        {
+          "name": "amount_sum",
+          "function": "sum",
+          "measure": "amount"
+        },
+        {
+          "name": "record_count",
+          "function": "count"
+        }
+      ],
+      "mappings": {
+        "item.subcount1": "subcount1",
+        "item.subcount2": "subcount2",
+        "item.category": "category",
+        "spent_on.year": {
+          "column": "spent_on",
+          "extract": "year"
+        },
+        "spent_on.month": {
+          "column": "spent_on",
+          "extract": "month"
+        },
+        "spent_on.week": {
+          "column": "spent_on",
+          "extract": "week"
+        },
+        "spent_on.day": {
+          "column": "spent_on",
+          "extract": "day"
+        }
+      },
+      "info": {
+      }
+    }
+  ]
+}
