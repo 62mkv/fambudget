@@ -4,7 +4,6 @@ from unittest import TestCase
 
 from fambudget.budgetparser import BudgetParser
 from fambudget.budgetparser import RRU, EUR
-from fambudget.budgetparser import SPENDING, MOVEMENT
 
 (
     CARD_W,
@@ -36,7 +35,7 @@ class TestBudgetParser(TestCase):
         self.p = BudgetParser(filename, config)
         super().__init__(tests)
 
-    def test_find_expense_columns(self):
+    def test_parser_initialization(self):
         expected = {
             5: (RRU, CARD_W),
             6: (RRU, CARD_M),
@@ -47,7 +46,7 @@ class TestBudgetParser(TestCase):
             22: (EUR, LOAN),
             23: (EUR, CASH)
         }
-        self.assertEqual(expected, self.p.find_expense_columns())
+        self.assertEqual(expected, self.p.wallets)
 
     def test_process_next_record(self):
         expected = [{AMOUNT: -2000.0,
@@ -86,7 +85,6 @@ class TestBudgetParser(TestCase):
                      SUBCOUNT2: 'Пиво',
                      SUBJECT: 'Муж'}
                     ]
-        self.p.find_expense_columns()
         self.assertEqual(expected, list(self.p.process_next_record()))
 
     def test_process_next_record_with_offset(self):
@@ -104,5 +102,4 @@ class TestBudgetParser(TestCase):
                      SUBCOUNT1: 'Алкоголь',
                      SUBCOUNT2: 'Пиво',
                      SUBJECT: 'Муж'}]
-        self.p.find_expense_columns()
         self.assertEqual(expected, list(self.p.process_next_record(datetime.strptime('2018-02-02', '%Y-%m-%d').date())))

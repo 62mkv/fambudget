@@ -16,8 +16,9 @@ class BudgetParser:
         self.config = config
         self.sheet = self.book.sheet_by_name("Текущие")
         self.wallets = None
+        self.__find_expense_columns()
 
-    def find_expense_columns(self):
+    def __find_expense_columns(self):
         if self.wallets is not None:
             return self.wallets
 
@@ -41,8 +42,6 @@ class BudgetParser:
                 result[column] = (currencies[current_index], wallet)
 
         self.wallets = result
-
-        return result
 
     def process_next_record(self, starting_date=None):
 

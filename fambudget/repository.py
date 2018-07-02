@@ -1,5 +1,6 @@
-import sqlalchemy
 from datetime import datetime
+
+import sqlalchemy
 
 FACT_TABLE = "fambudget"
 
@@ -31,9 +32,11 @@ class Repository:
             if counter % 1000 == 0:
                 print(counter, record)
             insert_command.execute(record)
+            processed_date = record['spent_on']
 
-    def create_table(self, table_name, fields,
-                     create_id=False, schema=None):
+        return processed_date
+
+    def create_table(self, table_name, fields, create_id=False, schema=None):
         """Create a table with name `table_name` from a CSV file `file_name` with columns corresponding
         to `fields`. The `fields` is a list of two string tuples: (name, type) where type might be:
         ``integer``, ``float`` or ``string``.
@@ -46,13 +49,9 @@ class Repository:
         framework, such as Brewery (http://databrewery.org).
         """
 
-        # if table.exists():
-        #   table.drop(checkfirst=False)
         metadata = sqlalchemy.MetaData(bind=self.engine)
 
         table = sqlalchemy.Table(table_name, metadata, autoload=False, schema=schema)
-        if not table.exists():
-            self.create_table(create_id, fields, table)
 
         type_map = {"integer": sqlalchemy.Integer,
                     "float": sqlalchemy.Numeric,
@@ -79,8 +78,9 @@ class Repository:
             .execute(sqlalchemy.select([sqlalchemy.func.max(self.table.c.spent_on)])) \
             .fetchone()[0]
 
-        return datetime.strptime(starting_date, '%Y-%m-%d').date()
+        return datetime.strptime(starting_date, '%Y-%m-%d').date() if starting_date else None
 
     def delete_from_date(self, start_date):
-        return self.engine \
-            .execute(sqlalchemy.sql.expression.delete(self.table).where(self.table.c.spent_on >= start_date))
+        if start_date:
+            self.engine \
+                .execute(sqlalchemy.sql.expression.delete(self.table).where(self.table.c.spent_on >= start_date))
