@@ -1,5 +1,6 @@
 ﻿import argparse
 import os
+import time
 from datetime import datetime
 
 from config import config
@@ -14,7 +15,7 @@ path = os.path.dirname(__file__)
 filename = args.filename or (path + "test2.xls")
 
 parser = budgetparser.BudgetParser(filename, config)
-repo = repository.Repository('sqlite:///data.sqlite')
+repo = repository.Repository('sqlite:///data.sqlite', 'fambudget')
 last_date = repo.get_latest_record_date()
 if args.fromdate:
     fromdate = datetime.strptime(args.fromdate, '%Y-%m-%d').date()
@@ -25,6 +26,10 @@ if args.fromdate:
         last_date = fromdate
 
 print('Parsing XLS file', filename, 'from date', last_date)
+start = time.time()
+
 repo.delete_from_date(last_date)
-new_last_date = repo.create_table_from_records(parser.process_next_record(last_date))
+new_last_date = repo.fill_table_with_records(parser.process_next_record(last_date))
 print('Parsing XLS file completed; last processed date is', new_last_date)
+end = time.time()
+print('Processing took', end - start, 'seconds')

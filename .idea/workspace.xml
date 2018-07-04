@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="caacd6b1-46c1-44d1-9fe5-8f9edb39dfd9" name="Default" comment="minor refactoring; added support for 'filename' CLI argument">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="caacd6b1-46c1-44d1-9fe5-8f9edb39dfd9" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fambudget/budgetparser.py" beforeDir="false" afterPath="$PROJECT_DIR$/fambudget/budgetparser.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fambudget/repository.py" beforeDir="false" afterPath="$PROJECT_DIR$/fambudget/repository.py" afterDir="false" />
@@ -22,8 +24,8 @@
       <file leaf-file-name="script.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/script.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="15" column="52" selection-start-line="15" selection-start-column="52" selection-end-line="15" selection-end-column="52" />
+            <state relative-caret-position="430">
+              <caret line="34" column="46" selection-start-line="34" selection-start-column="46" selection-end-line="34" selection-end-column="46" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
               </folding>
@@ -34,8 +36,8 @@
       <file leaf-file-name="repository.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/fambudget/repository.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="430">
-              <caret line="85" column="45" selection-start-line="85" selection-start-column="45" selection-end-line="85" selection-end-column="45" />
+            <state relative-caret-position="107">
+              <caret line="14" selection-start-line="14" selection-end-line="15" />
               <folding>
                 <element signature="e#0#29#0" expanded="true" />
               </folding>
@@ -43,20 +45,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="model.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/model.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2278">
-              <caret line="134" column="29" selection-start-line="134" selection-start-column="29" selection-end-line="134" selection-end-column="29" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="budgetparser.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/fambudget/budgetparser.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="429">
-              <caret line="83" column="48" selection-start-line="83" selection-start-column="48" selection-end-line="83" selection-end-column="48" />
+            <state relative-caret-position="379">
+              <caret line="81" column="34" selection-start-line="81" selection-start-column="34" selection-end-line="81" selection-end-column="43" />
             </state>
           </provider>
         </entry>
@@ -64,34 +57,11 @@
       <file leaf-file-name="test_budgetParser.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/fambudget/tests/test_budgetParser.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="19" column="14" selection-start-line="19" selection-start-column="14" selection-end-line="19" selection-end-column="14" />
+            <state relative-caret-position="302">
+              <caret line="23" column="27" selection-start-line="23" selection-start-column="27" selection-end-line="23" selection-end-column="27" />
               <folding>
                 <element signature="e#0#14#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/README.md">
-          <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
-            <state split_layout="SPLIT">
-              <first_editor relative-caret-position="394">
-                <caret line="33" selection-start-line="33" selection-end-line="33" />
-              </first_editor>
-              <second_editor>
-                <markdownNavigatorState />
-              </second_editor>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="config.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/config.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret selection-end-line="4" />
             </state>
           </provider>
         </entry>
@@ -127,8 +97,12 @@
         <option value="$PROJECT_DIR$/fambudget/test_budgetParser.py" />
         <option value="$PROJECT_DIR$/model.json" />
         <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/requirements.txt" />
+        <option value="$PROJECT_DIR$/alembic.ini" />
+        <option value="$PROJECT_DIR$/alembic/versions/08a9721b683a_create_single_currency_spending_table.py" />
         <option value="$PROJECT_DIR$/fambudget/budgetparser.py" />
         <option value="$PROJECT_DIR$/fambudget/tests/test_budgetParser.py" />
+        <option value="$PROJECT_DIR$/alembic/versions/9933b59d2c41_add_row_index_column_to_single_currency_.py" />
         <option value="$PROJECT_DIR$/fambudget/repository.py" />
         <option value="$PROJECT_DIR$/script.py" />
       </list>
@@ -139,62 +113,6 @@
     <option name="y" value="1" />
     <option name="width" value="1300" />
     <option name="height" value="820" />
-  </component>
-  <component name="ProjectInspectionProfilesVisibleTreeState">
-    <entry key="Project Default">
-      <profile-state>
-        <expanded-state>
-          <State>
-            <id />
-          </State>
-          <State>
-            <id>Class structureJava</id>
-          </State>
-          <State>
-            <id>Code maturity issuesJava</id>
-          </State>
-          <State>
-            <id>JUnit issuesJava</id>
-          </State>
-          <State>
-            <id>Java</id>
-          </State>
-          <State>
-            <id>Java 5Java language level migration aidsJava</id>
-          </State>
-          <State>
-            <id>Java 7Java language level migration aidsJava</id>
-          </State>
-          <State>
-            <id>Java 8Java language level migration aidsJava</id>
-          </State>
-          <State>
-            <id>Java language level migration aidsJava</id>
-          </State>
-          <State>
-            <id>Javadoc issuesJava</id>
-          </State>
-          <State>
-            <id>Numeric issuesJava</id>
-          </State>
-          <State>
-            <id>Portability issuesJava</id>
-          </State>
-          <State>
-            <id>Probable bugsJava</id>
-          </State>
-          <State>
-            <id>Resource management issuesJava</id>
-          </State>
-          <State>
-            <id>TestNGJava</id>
-          </State>
-          <State>
-            <id>Threading issuesJava</id>
-          </State>
-        </expanded-state>
-      </profile-state>
-    </entry>
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -212,12 +130,13 @@
             <path>
               <item name="fambudget" type="b2602c69:ProjectViewProjectNode" />
               <item name="fambudget" type="462c0819:PsiDirectoryNode" />
-              <item name="fambudget" type="462c0819:PsiDirectoryNode" />
+              <item name="alembic" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="fambudget" type="b2602c69:ProjectViewProjectNode" />
               <item name="fambudget" type="462c0819:PsiDirectoryNode" />
-              <item name="images" type="462c0819:PsiDirectoryNode" />
+              <item name="alembic" type="462c0819:PsiDirectoryNode" />
+              <item name="versions" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -232,6 +151,7 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
@@ -252,7 +172,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.script.py  with filename">
+  <component name="RunManager" selected="Python.script.py">
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
     </configuration>
@@ -407,22 +327,17 @@
       <option name="project" value="LOCAL" />
       <updated>1529953622364</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="fixed table creation; minor refactoring; added support for 'filename' CLI argument">
+      <created>1530558824227</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1530558824227</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Unittests_for_fambudget_tests_test_budgetParser - 2018.06.24 at 22h 24m 36s.xml">
-      <configuration name="Unittests for fambudget.tests.test_budgetParser" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Unittests_for_fambudget_tests_test_budgetParser - 2018.06.24 at 22h 26m 21s.xml">
-      <configuration name="Unittests for fambudget.tests.test_budgetParser" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Unittests_for_fambudget_tests_test_budgetParser - 2018.06.24 at 22h 28m 03s.xml">
-      <configuration name="Unittests for fambudget.tests.test_budgetParser" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Unittests_for_fambudget_tests_test_budgetParser - 2018.06.24 at 22h 29m 10s.xml">
-      <configuration name="Unittests for fambudget.tests.test_budgetParser" configurationId="tests" />
-    </history-entry>
     <history-entry file="Unittests_for_fambudget_tests_test_budgetParser - 2018.07.02 at 21h 07m 59s.xml">
       <configuration name="Unittests for fambudget.tests.test_budgetParser" configurationId="tests" />
     </history-entry>
@@ -441,6 +356,18 @@
     <history-entry file="Unittests_for_fambudget_tests_test_budgetParser - 2018.07.02 at 21h 12m 38s.xml">
       <configuration name="Unittests for fambudget.tests.test_budgetParser" configurationId="tests" />
     </history-entry>
+    <history-entry file="Unittests_for_fambudget_tests_test_budgetParser - 2018.07.04 at 18h 22m 04s.xml">
+      <configuration name="Unittests for fambudget.tests.test_budgetParser" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_for_fambudget_tests_test_budgetParser - 2018.07.04 at 18h 22m 57s.xml">
+      <configuration name="Unittests for fambudget.tests.test_budgetParser" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_for_fambudget_tests_test_budgetParser - 2018.07.04 at 20h 38m 37s.xml">
+      <configuration name="Unittests for fambudget.tests.test_budgetParser" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_for_fambudget_tests_test_budgetParser - 2018.07.04 at 20h 38m 48s.xml">
+      <configuration name="Unittests for fambudget.tests.test_budgetParser" configurationId="tests" />
+    </history-entry>
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -457,20 +384,19 @@
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32997763" />
       <window_info id="DB Browser" order="2" />
-      <window_info anchor="bottom" id="Messages" weight="0.32997763" />
       <window_info anchor="right" id="Palette&#9;" order="3" />
       <window_info anchor="bottom" id="DB Execution Console" order="7" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="right" id="Maven Projects" order="3" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32885906" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32997763" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32885906" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.32997763" />
       <window_info id="Designer" order="2" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49" visible="true" weight="0.28056234" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.48833334" visible="true" weight="0.28422982" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32997763" />
-      <window_info id="Structure" order="1" sideWeight="0.51" side_tool="true" visible="true" weight="0.28056234" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info id="Structure" order="1" sideWeight="0.51166666" side_tool="true" visible="true" weight="0.28422982" />
       <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="Inspection Results" order="7" weight="0.32994187" />
@@ -478,6 +404,7 @@
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Messages" order="7" weight="0.32997763" />
     </layout>
     <layout-to-restore>
       <window_info anchor="bottom" id="DB Execution Console" order="0" />
@@ -491,14 +418,14 @@
       <window_info anchor="bottom" id="Run" order="6" visible="true" weight="0.32994187" />
       <window_info id="DB Browser" order="0" />
       <window_info id="Designer" order="1" />
+      <window_info anchor="bottom" id="Message" order="4" />
       <window_info anchor="bottom" id="Debug" order="7" weight="0.4" />
-      <window_info anchor="bottom" id="Find" order="5" />
       <window_info anchor="right" id="Palette&#9;" order="0" />
       <window_info anchor="bottom" id="Terminal" order="3" />
       <window_info anchor="bottom" id="Event Log" order="1" side_tool="true" />
       <window_info anchor="bottom" id="Inspection" order="9" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="8" weight="0.25" />
-      <window_info anchor="bottom" id="Message" order="4" />
+      <window_info anchor="bottom" id="Find" order="5" />
       <window_info anchor="right" id="Maven Projects" order="1" />
       <window_info id="Favorites" order="2" side_tool="true" />
     </layout-to-restore>
@@ -509,60 +436,10 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="added README" />
     <MESSAGE value="minor refactoring; added support for 'filename' CLI argument" />
-    <option name="LAST_COMMIT_MESSAGE" value="minor refactoring; added support for 'filename' CLI argument" />
+    <MESSAGE value="fixed table creation; minor refactoring; added support for 'filename' CLI argument" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed table creation; minor refactoring; added support for 'filename' CLI argument" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/fambudget/tests/test_budgetParser.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1819">
-          <caret line="112" column="44" selection-start-line="112" selection-start-column="44" selection-end-line="112" selection-end-column="44" />
-          <folding>
-            <element signature="e#0#14#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="16" selection-start-line="1" selection-start-column="16" selection-end-line="1" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/script.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="850">
-          <caret line="53" column="27" selection-start-line="53" selection-start-column="27" selection-end-line="53" selection-end-column="27" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fambudget/budgetparser.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1003">
-          <caret line="59" selection-start-line="59" selection-end-line="59" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fambudget/tests/test_budgetParser.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1088">
-          <caret line="69" column="41" selection-start-line="69" selection-start-column="41" selection-end-line="69" selection-end-column="41" />
-          <folding>
-            <element signature="e#0#14#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="16" selection-start-line="1" selection-start-column="16" selection-end-line="1" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/model.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2193">
@@ -807,10 +684,70 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/alembic/README">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/alembic/env.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-510">
+          <folding>
+            <element signature="e#0#37#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/alembic.ini">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="697">
+          <caret line="74" selection-start-line="74" selection-end-line="74" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/alembic/versions/08a9721b683a_create_single_currency_spending_table.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="23" column="36" selection-start-line="23" selection-start-column="31" selection-end-line="23" selection-end-column="36" />
+          <folding>
+            <element signature="e#123#145#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/requirements.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" selection-start-line="4" selection-end-line="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fambudget/budgetparser.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="379">
+          <caret line="81" column="34" selection-start-line="81" selection-start-column="34" selection-end-line="81" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/alembic/versions/9933b59d2c41_add_row_index_column_to_single_currency_.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="22" column="8" selection-start-line="22" selection-start-column="8" selection-end-line="22" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fambudget/repository.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="107">
+          <caret line="14" selection-start-line="14" selection-end-line="15" />
+          <folding>
+            <element signature="e#0#29#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="394">
+          <first_editor relative-caret-position="395">
             <caret line="33" selection-start-line="33" selection-end-line="33" />
           </first_editor>
           <second_editor>
@@ -826,35 +763,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/fambudget/tests/test_budgetParser.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="14" selection-start-line="19" selection-start-column="14" selection-end-line="19" selection-end-column="14" />
+        <state relative-caret-position="302">
+          <caret line="23" column="27" selection-start-line="23" selection-start-column="27" selection-end-line="23" selection-end-column="27" />
           <folding>
             <element signature="e#0#14#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/fambudget/budgetparser.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="429">
-          <caret line="83" column="48" selection-start-line="83" selection-start-column="48" selection-end-line="83" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fambudget/repository.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="430">
-          <caret line="85" column="45" selection-start-line="85" selection-start-column="45" selection-end-line="85" selection-end-column="45" />
-          <folding>
-            <element signature="e#0#29#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/script.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="52" selection-start-line="15" selection-start-column="52" selection-end-line="15" selection-end-column="52" />
+        <state relative-caret-position="430">
+          <caret line="34" column="46" selection-start-line="34" selection-start-column="46" selection-end-line="34" selection-end-column="46" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
           </folding>

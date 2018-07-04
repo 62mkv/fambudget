@@ -79,6 +79,7 @@ class BudgetParser:
                         spending.update(record)
                         spending['currency'] = currency
                         spending['amount'] = amount
+                        spending['row_index'] = row
                         yield spending
             except Exception as N:
                 print(N, ' occurred at: ', row, values)

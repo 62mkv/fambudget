@@ -14,13 +14,14 @@ from fambudget.budgetparser import RRU, EUR
 
 (
     SPENT_ON,
+    ROW_NUMBER,
     SUBJECT,
     CATEGORY,
     SUBCOUNT1,
     SUBCOUNT2,
     AMOUNT,
     CURRENCY
-) = ('spent_on', 'subject', 'category', 'subcount1', 'subcount2', 'amount', 'currency')
+) = ('spent_on', 'row_index', 'subject', 'category', 'subcount1', 'subcount2', 'amount', 'currency')
 
 config = {
     'wallets': [CARD_W, CARD_M, CASH, LOAN],
@@ -52,6 +53,7 @@ class TestBudgetParser(TestCase):
         expected = [{AMOUNT: -2000.0,
                      CATEGORY: 'Обязательные платежи',
                      CURRENCY: 'RUB',
+                     ROW_NUMBER: 2,
                      SPENT_ON: '2018-02-01',
                      SUBCOUNT1: 'Коммунальные',
                      SUBCOUNT2: '',
@@ -59,6 +61,7 @@ class TestBudgetParser(TestCase):
                     {AMOUNT: -50.0,
                      CATEGORY: 'Обязательные платежи',
                      CURRENCY: 'EUR',
+                     ROW_NUMBER: 2,
                      SPENT_ON: '2018-02-01',
                      SUBCOUNT1: 'Коммунальные',
                      SUBCOUNT2: '',
@@ -66,6 +69,7 @@ class TestBudgetParser(TestCase):
                     {AMOUNT: -500.0,
                      CATEGORY: 'Обязательные платежи',
                      CURRENCY: 'RUB',
+                     ROW_NUMBER: 3,
                      SPENT_ON: '2018-02-01',
                      SUBCOUNT1: 'Интернет',
                      SUBCOUNT2: '',
@@ -73,6 +77,7 @@ class TestBudgetParser(TestCase):
                     {AMOUNT: -1000.0,
                      CATEGORY: 'Отдых',
                      CURRENCY: 'RUB',
+                     ROW_NUMBER: 8,
                      SPENT_ON: '2018-02-02',
                      SUBCOUNT1: 'Алкоголь',
                      SUBCOUNT2: 'Пиво',
@@ -80,6 +85,7 @@ class TestBudgetParser(TestCase):
                     {AMOUNT: -20.0,
                      CATEGORY: 'Отдых',
                      CURRENCY: 'EUR',
+                     ROW_NUMBER: 8,
                      SPENT_ON: '2018-02-02',
                      SUBCOUNT1: 'Алкоголь',
                      SUBCOUNT2: 'Пиво',
@@ -91,6 +97,7 @@ class TestBudgetParser(TestCase):
         expected = [{AMOUNT: -1000.0,
                      CATEGORY: 'Отдых',
                      CURRENCY: 'RUB',
+                     ROW_NUMBER: 8,
                      SPENT_ON: '2018-02-02',
                      SUBCOUNT1: 'Алкоголь',
                      SUBCOUNT2: 'Пиво',
@@ -98,6 +105,7 @@ class TestBudgetParser(TestCase):
                     {AMOUNT: -20.0,
                      CATEGORY: 'Отдых',
                      CURRENCY: 'EUR',
+                     ROW_NUMBER: 8,
                      SPENT_ON: '2018-02-02',
                      SUBCOUNT1: 'Алкоголь',
                      SUBCOUNT2: 'Пиво',

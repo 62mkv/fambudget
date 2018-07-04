@@ -2,28 +2,73 @@ from datetime import datetime
 
 import sqlalchemy
 
-FACT_TABLE = "fambudget"
+from fambudget.budgetparser import EUR, RRU
+
+ONE_CURRENCY = "fambudget"
+ALL_CURRENCY = "fambudget_ac"
+
+SCHEMA = {
+    ONE_CURRENCY: [
+        ("amount", "float"),
+        ("category", "string"),
+        ("currency", "string"),
+        ("row_index", "integer"),
+        ("spent_on", "date"),
+        ("subject", "string"),
+        ("subcount1", "string"),
+        ("subcount2", "string")
+    ],
+    ALL_CURRENCY: [
+        ("amount_" + EUR, "float"),
+        ("amount_" + RRU, "float"),
+        ("category", "string"),
+        ("spent_on", "date"),
+        ("subject", "string"),
+        ("subcount1", "string"),
+        ("subcount2", "string")
+    ]
+}
+
+
+def create_table(engine, table_name, fields, create_id=False, schema=None):
+    """
+    Create SQLAlchemy table according to provided schema
+    """
+    metadata = sqlalchemy.MetaData(bind=engine)
+    table = sqlalchemy.Table(table_name, metadata, autoload=False, schema=schema)
+    type_map = {"integer": sqlalchemy.Integer,
+                "float": sqlalchemy.Numeric,
+                "string": sqlalchemy.String(256),
+                "text": sqlalchemy.Text,
+                "date": sqlalchemy.Text,
+                "boolean": sqlalchemy.Integer}
+
+    if create_id:
+        col = sqlalchemy.schema.Column('id', sqlalchemy.Integer, primary_key=True)
+        table.append_column(col)
+
+    field_names = []
+
+    for (field_name, field_type) in fields:
+        col = sqlalchemy.schema.Column(field_name, type_map[field_type.lower()])
+        table.append_column(col)
+        field_names.append(field_name)
+
+    return table
 
 
 class Repository:
-    def __init__(self, filename):
+    def __init__(self, filename, tablename):
         self.engine = sqlalchemy.create_engine(filename)
 
-        self.table = self.create_table(
-            table_name=FACT_TABLE,
-            fields=[
-                ("spent_on", "date"),
-                ("subject", "string"),
-                ("category", "string"),
-                ("subcount1", "string"),
-                ("subcount2", "string"),
-                ("amount", "integer"),
-                ("currency", "string")
-            ],
+        self.table = create_table(
+            engine=self.engine,
+            table_name=tablename,
+            fields=SCHEMA[tablename],
             create_id=True
         )
 
-    def create_table_from_records(self, records):
+    def fill_table_with_records(self, records):
         insert_command = self.table.insert()
 
         counter = 0
@@ -35,43 +80,6 @@ class Repository:
             processed_date = record['spent_on']
 
         return processed_date
-
-    def create_table(self, table_name, fields, create_id=False, schema=None):
-        """Create a table with name `table_name` from a CSV file `file_name` with columns corresponding
-        to `fields`. The `fields` is a list of two string tuples: (name, type) where type might be:
-        ``integer``, ``float`` or ``string``.
-
-        If `create_id` is ``True`` then a column with name ``id`` is created and will contain generated
-        sequential record id.
-
-        This is just small utility function for sandbox, play-around and testing purposes. It is not
-        recommended to be used for serious CSV-to-table loadings. For more advanced CSV loadings use another
-        framework, such as Brewery (http://databrewery.org).
-        """
-
-        metadata = sqlalchemy.MetaData(bind=self.engine)
-
-        table = sqlalchemy.Table(table_name, metadata, autoload=False, schema=schema)
-
-        type_map = {"integer": sqlalchemy.Integer,
-                    "float": sqlalchemy.Numeric,
-                    "string": sqlalchemy.String(256),
-                    "text": sqlalchemy.Text,
-                    "date": sqlalchemy.Text,
-                    "boolean": sqlalchemy.Integer}
-        if create_id:
-            col = sqlalchemy.schema.Column('id', sqlalchemy.Integer, primary_key=True)
-            table.append_column(col)
-        field_names = []
-        for (field_name, field_type) in fields:
-            col = sqlalchemy.schema.Column(field_name, type_map[field_type.lower()])
-            table.append_column(col)
-            field_names.append(field_name)
-
-        if not table.exists():
-            table.create()
-
-        return table
 
     def get_latest_record_date(self):
         starting_date = self.engine \
