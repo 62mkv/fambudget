@@ -1,14 +1,9 @@
-from datetime import datetime
-
 import sqlalchemy
 
-from fambudget.budgetparser import EUR, RRU
-
-ONE_CURRENCY = "fambudget"
-ALL_CURRENCY = "fambudget_ac"
+from constants import EUR, RRU, SINGLE_CURRENCY, MULTI_CURRENCY, EXCHANGE_RATE
 
 SCHEMA = {
-    ONE_CURRENCY: [
+    SINGLE_CURRENCY: [
         ("amount", "float"),
         ("category", "string"),
         ("currency", "string"),
@@ -18,7 +13,7 @@ SCHEMA = {
         ("subcount1", "string"),
         ("subcount2", "string")
     ],
-    ALL_CURRENCY: [
+    MULTI_CURRENCY: [
         ("amount_" + EUR, "float"),
         ("amount_" + RRU, "float"),
         ("category", "string"),
@@ -26,6 +21,12 @@ SCHEMA = {
         ("subject", "string"),
         ("subcount1", "string"),
         ("subcount2", "string")
+    ],
+    EXCHANGE_RATE: [
+        ("base_currency", "string"),
+        ("other_currency", "string"),
+        ("rate", "float"),
+        ("date", "date")
     ]
 }
 
@@ -40,7 +41,7 @@ def create_table(engine, table_name, fields, create_id=False, schema=None):
                 "float": sqlalchemy.Numeric,
                 "string": sqlalchemy.String(256),
                 "text": sqlalchemy.Text,
-                "date": sqlalchemy.Text,
+                "date": sqlalchemy.Date,
                 "boolean": sqlalchemy.Integer}
 
     if create_id:
@@ -68,7 +69,7 @@ class Repository:
             create_id=True
         )
 
-    def fill_table_with_records(self, records):
+    def fill_table_with_records(self, records, date_field_name='spent_on'):
         insert_command = self.table.insert()
 
         counter = 0
@@ -77,7 +78,7 @@ class Repository:
             if counter % 1000 == 0:
                 print(counter, record)
             insert_command.execute(record)
-            processed_date = record['spent_on']
+            processed_date = record[date_field_name]
 
         return processed_date
 
@@ -86,7 +87,7 @@ class Repository:
             .execute(sqlalchemy.select([sqlalchemy.func.max(self.table.c.spent_on)])) \
             .fetchone()[0]
 
-        return datetime.strptime(starting_date, '%Y-%m-%d').date() if starting_date else None
+        return starting_date
 
     def delete_from_date(self, start_date):
         if start_date:

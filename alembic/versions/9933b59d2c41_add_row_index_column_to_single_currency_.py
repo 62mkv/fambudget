@@ -20,8 +20,9 @@ def upgrade():
     op.add_column('fambudget',
                   sa.Column('row_index', sa.Integer)
                   )
-    pass
 
 
 def downgrade():
-    pass
+    op.drop_column('fambudget',
+                   sa.Column('row_index', sa.Integer)
+                   )

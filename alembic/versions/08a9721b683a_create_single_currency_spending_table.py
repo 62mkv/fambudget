@@ -29,9 +29,7 @@ def upgrade():
         sa.Column("subcount1", sa.String(256)),
         sa.Column("subcount2", sa.String(256))
     )
-    pass
 
 
 def downgrade():
     op.drop_table('fambudget')
-    pass

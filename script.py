@@ -4,7 +4,8 @@ import time
 from datetime import datetime
 
 from config import config
-from fambudget import budgetparser, repository
+from fambudget import budgetparser
+from dbtables import repository
 
 argparser = argparse.ArgumentParser()
 argparser.add_argument("--fromdate", type=str, help="Process spending data, starting from this date (YYYY-MM-DD)")
@@ -12,7 +13,7 @@ argparser.add_argument("--filename", type=str, help="Full path of XLS file to pa
 args = argparser.parse_args()
 
 path = os.path.dirname(__file__)
-filename = args.filename or (path + "test2.xls")
+filename = args.filename or (path + config['default_filename'])
 
 parser = budgetparser.BudgetParser(filename, config)
 repo = repository.Repository('sqlite:///data.sqlite', 'fambudget')

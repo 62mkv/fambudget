@@ -2,3 +2,4 @@ cubes >= 1.1
 SQLAlchemy >= 1.2
 xlrd >= 1.1
 alembic >= 0.9
+openpyxl >= 2.5.5

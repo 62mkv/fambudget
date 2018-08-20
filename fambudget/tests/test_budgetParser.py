@@ -3,7 +3,7 @@ from datetime import datetime
 from unittest import TestCase
 
 from fambudget.budgetparser import BudgetParser
-from fambudget.budgetparser import RRU, EUR
+from constants import RRU, EUR
 
 (
     CARD_W,

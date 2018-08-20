@@ -6,8 +6,6 @@ import xlrd
     MOVEMENT
 ) = ('spending', 'income', 'movement')
 
-(RRU, EUR) = ('RUB', 'EUR')
-
 
 class BudgetParser:
 
@@ -66,7 +64,7 @@ class BudgetParser:
                 values = [self.sheet.cell(row, col).value for col in range(1, 5)]
 
                 record = dict(zip(names, values))
-                record['spent_on'] = spent_on.isoformat()
+                record['spent_on'] = spent_on
 
                 for currency in self.config['currency_sets'].values():
                     names_and_cols = [(key, value[1]) for (key, value) in self.wallets.items() if value[0] == currency]

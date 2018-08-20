@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="caacd6b1-46c1-44d1-9fe5-8f9edb39dfd9" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="caacd6b1-46c1-44d1-9fe5-8f9edb39dfd9" name="Default" comment="added migrations (alembic), added 'row_index' column">
+      <change afterPath="$PROJECT_DIR$/import_rates.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/alembic/versions/08a9721b683a_create_single_currency_spending_table.py" beforeDir="false" afterPath="$PROJECT_DIR$/alembic/versions/08a9721b683a_create_single_currency_spending_table.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/alembic/versions/9933b59d2c41_add_row_index_column_to_single_currency_.py" beforeDir="false" afterPath="$PROJECT_DIR$/alembic/versions/9933b59d2c41_add_row_index_column_to_single_currency_.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config.py.stub" beforeDir="false" afterPath="$PROJECT_DIR$/config.py.stub" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fambudget/budgetparser.py" beforeDir="false" afterPath="$PROJECT_DIR$/fambudget/budgetparser.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fambudget/repository.py" beforeDir="false" afterPath="$PROJECT_DIR$/fambudget/repository.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fambudget/repository.py" beforeDir="false" afterPath="$PROJECT_DIR$/dbtables/repository.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fambudget/tests/test_budgetParser.py" beforeDir="false" afterPath="$PROJECT_DIR$/fambudget/tests/test_budgetParser.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/script.py" beforeDir="false" afterPath="$PROJECT_DIR$/script.py" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -21,11 +24,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="script.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="script.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/script.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="430">
-              <caret line="34" column="46" selection-start-line="34" selection-start-column="46" selection-end-line="34" selection-end-column="46" />
+            <state relative-caret-position="379">
+              <caret line="32" column="60" selection-start-line="32" selection-start-column="60" selection-end-line="32" selection-end-column="60" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
               </folding>
@@ -33,34 +36,63 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="repository.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/fambudget/repository.py">
+      <file leaf-file-name="import_rates.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/import_rates.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="107">
-              <caret line="14" selection-start-line="14" selection-end-line="15" />
+            <state relative-caret-position="17">
+              <caret line="1" column="6" selection-start-line="1" selection-start-column="6" selection-end-line="1" selection-end-column="6" />
               <folding>
-                <element signature="e#0#29#0" expanded="true" />
+                <element signature="e#343#376#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="budgetparser.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/fambudget/budgetparser.py">
+      <file leaf-file-name="datetime.pyi" pinned="false" current-in-tab="false">
+        <entry file="file://$APPLICATION_PLUGINS_DIR$/python-ce/helpers/typeshed/stdlib/2and3/datetime.pyi">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="379">
-              <caret line="81" column="34" selection-start-line="81" selection-start-column="34" selection-end-line="81" selection-end-column="43" />
+            <state>
+              <folding>
+                <element signature="e#0#10#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="test_budgetParser.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/fambudget/tests/test_budgetParser.py">
+      <file leaf-file-name="9fdaf56bb8e5_create_table_for_exchange_rates.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/alembic/versions/9fdaf56bb8e5_create_table_for_exchange_rates.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="302">
-              <caret line="23" column="27" selection-start-line="23" selection-start-column="27" selection-end-line="23" selection-end-column="27" />
+            <state relative-caret-position="340">
+              <caret line="21" column="32" selection-start-line="21" selection-start-column="19" selection-end-line="21" selection-end-column="32" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="budgetparser.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/fambudget/budgetparser.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="430">
+              <caret line="82" column="45" selection-start-line="82" selection-start-column="45" selection-end-line="82" selection-end-column="45" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="constants.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/constants.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="68">
+              <caret line="4" column="31" selection-start-line="4" selection-start-column="31" selection-end-line="4" selection-end-column="31" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="repository.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dbtables/repository.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="183">
+              <caret line="81" selection-start-line="81" selection-end-line="81" />
               <folding>
-                <element signature="e#0#14#0" expanded="true" />
+                <element signature="e#0#29#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -92,19 +124,24 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/fambudget/parser.py" />
-        <option value="$PROJECT_DIR$/config.py" />
         <option value="$PROJECT_DIR$/fambudget/test_parser.py" />
         <option value="$PROJECT_DIR$/fambudget/test_budgetParser.py" />
         <option value="$PROJECT_DIR$/model.json" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/requirements.txt" />
         <option value="$PROJECT_DIR$/alembic.ini" />
-        <option value="$PROJECT_DIR$/alembic/versions/08a9721b683a_create_single_currency_spending_table.py" />
-        <option value="$PROJECT_DIR$/fambudget/budgetparser.py" />
-        <option value="$PROJECT_DIR$/fambudget/tests/test_budgetParser.py" />
-        <option value="$PROJECT_DIR$/alembic/versions/9933b59d2c41_add_row_index_column_to_single_currency_.py" />
         <option value="$PROJECT_DIR$/fambudget/repository.py" />
+        <option value="$PROJECT_DIR$/alembic/versions/08a9721b683a_create_single_currency_spending_table.py" />
+        <option value="$PROJECT_DIR$/alembic/versions/9933b59d2c41_add_row_index_column_to_single_currency_.py" />
         <option value="$PROJECT_DIR$/script.py" />
+        <option value="$PROJECT_DIR$/config.py" />
+        <option value="$PROJECT_DIR$/config.py.stub" />
+        <option value="$PROJECT_DIR$/alembic/versions/9fdaf56bb8e5_create_table_for_exchange_rates.py" />
+        <option value="$PROJECT_DIR$/fambudget/tests/test_budgetParser.py" />
+        <option value="$PROJECT_DIR$/constants.py" />
+        <option value="$PROJECT_DIR$/import_rates.py" />
+        <option value="$PROJECT_DIR$/dbtables/repository.py" />
+        <option value="$PROJECT_DIR$/fambudget/budgetparser.py" />
       </list>
     </option>
   </component>
@@ -120,6 +157,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -138,12 +176,21 @@
               <item name="alembic" type="462c0819:PsiDirectoryNode" />
               <item name="versions" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="fambudget" type="b2602c69:ProjectViewProjectNode" />
+              <item name="fambudget" type="462c0819:PsiDirectoryNode" />
+              <item name="dbtables" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="fambudget" type="b2602c69:ProjectViewProjectNode" />
+              <item name="fambudget" type="462c0819:PsiDirectoryNode" />
+              <item name="fambudget" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
       <pane id="PackagesPane" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -156,6 +203,8 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Develop\Python\fambudget\dbtables" />
+      <recent name="C:\Develop\Python\fambudget\fambudget" />
       <recent name="C:\Develop\Python\fambudget" />
       <recent name="C:\Develop\Python\fambudget\fambudget\tests" />
     </key>
@@ -172,7 +221,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.script.py">
+  <component name="RunManager" selected="Python.script.py  with filename">
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
     </configuration>
@@ -226,7 +275,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="script.py" />
-      <option name="PARAMETERS" value="--filename=доходы_расходы.xls" />
+      <option name="PARAMETERS" value="--filename=source-data/доходы_расходы.xls" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -334,16 +383,17 @@
       <option name="project" value="LOCAL" />
       <updated>1530558824227</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="added migrations (alembic), added 'row_index' column">
+      <created>1530733396284</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1530733396284</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Unittests_for_fambudget_tests_test_budgetParser - 2018.07.02 at 21h 07m 59s.xml">
-      <configuration name="Unittests for fambudget.tests.test_budgetParser" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Unittests_for_fambudget_tests_test_budgetParser - 2018.07.02 at 21h 08m 28s.xml">
-      <configuration name="Unittests for fambudget.tests.test_budgetParser" configurationId="tests" />
-    </history-entry>
     <history-entry file="Unittests_for_fambudget_tests_test_budgetParser - 2018.07.02 at 21h 11m 36s.xml">
       <configuration name="Unittests for fambudget.tests.test_budgetParser" configurationId="tests" />
     </history-entry>
@@ -368,6 +418,12 @@
     <history-entry file="Unittests_for_fambudget_tests_test_budgetParser - 2018.07.04 at 20h 38m 48s.xml">
       <configuration name="Unittests for fambudget.tests.test_budgetParser" configurationId="tests" />
     </history-entry>
+    <history-entry file="Unittests_for_fambudget_tests_test_budgetParser - 2018.08.20 at 18h 07m 45s.xml">
+      <configuration name="Unittests for fambudget.tests.test_budgetParser" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_for_fambudget_tests_test_budgetParser - 2018.08.20 at 18h 08m 01s.xml">
+      <configuration name="Unittests for fambudget.tests.test_budgetParser" configurationId="tests" />
+    </history-entry>
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -383,7 +439,7 @@
     <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32997763" />
-      <window_info id="DB Browser" order="2" />
+      <window_info id="DB Browser" order="2" weight="0.2176039" />
       <window_info anchor="right" id="Palette&#9;" order="3" />
       <window_info anchor="bottom" id="DB Execution Console" order="7" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
@@ -392,19 +448,19 @@
       <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32885906" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.32997763" />
       <window_info id="Designer" order="2" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.48833334" visible="true" weight="0.28422982" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6494157" visible="true" weight="0.30256724" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32997763" />
-      <window_info id="Structure" order="1" sideWeight="0.51166666" side_tool="true" visible="true" weight="0.28422982" />
+      <window_info auto_hide="true" id="Structure" order="1" sideWeight="0.3505843" side_tool="true" type="SLIDING" weight="0.29889977" />
       <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39932886" />
+      <window_info anchor="bottom" id="Inspection Results" order="7" weight="0.32994187" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="Inspection Results" order="7" weight="0.32994187" />
+      <window_info active="true" anchor="bottom" id="Messages" order="7" visible="true" weight="0.32997763" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Messages" order="7" weight="0.32997763" />
     </layout>
     <layout-to-restore>
       <window_info anchor="bottom" id="DB Execution Console" order="0" />
@@ -418,17 +474,43 @@
       <window_info anchor="bottom" id="Run" order="6" visible="true" weight="0.32994187" />
       <window_info id="DB Browser" order="0" />
       <window_info id="Designer" order="1" />
-      <window_info anchor="bottom" id="Message" order="4" />
       <window_info anchor="bottom" id="Debug" order="7" weight="0.4" />
+      <window_info anchor="bottom" id="Find" order="5" />
       <window_info anchor="right" id="Palette&#9;" order="0" />
       <window_info anchor="bottom" id="Terminal" order="3" />
       <window_info anchor="bottom" id="Event Log" order="1" side_tool="true" />
       <window_info anchor="bottom" id="Inspection" order="9" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="8" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="5" />
+      <window_info anchor="bottom" id="Message" order="4" />
       <window_info anchor="right" id="Maven Projects" order="1" />
       <window_info id="Favorites" order="2" side_tool="true" />
     </layout-to-restore>
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
+              <option name="COLUMN_ORDER">
+                <list>
+                  <option value="0" />
+                  <option value="1" />
+                  <option value="2" />
+                  <option value="3" />
+                </list>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
@@ -437,69 +519,15 @@
     <MESSAGE value="added README" />
     <MESSAGE value="minor refactoring; added support for 'filename' CLI argument" />
     <MESSAGE value="fixed table creation; minor refactoring; added support for 'filename' CLI argument" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed table creation; minor refactoring; added support for 'filename' CLI argument" />
+    <MESSAGE value="added migrations (alembic), added 'row_index' column" />
+    <option name="LAST_COMMIT_MESSAGE" value="added migrations (alembic), added 'row_index' column" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <option name="time" value="1" />
+    </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/model.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2193">
-          <caret line="129" column="9" lean-forward="true" selection-start-line="129" selection-start-column="9" selection-end-line="129" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/script.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fambudget/tests/test_budgetParser.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="952">
-          <caret line="61" column="37" selection-start-line="61" selection-start-column="37" selection-end-line="61" selection-end-column="37" />
-          <folding>
-            <element signature="e#0#14#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="16" selection-start-line="1" selection-start-column="16" selection-end-line="1" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fambudget/budgetparser.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1122">
-          <caret line="66" column="28" selection-start-line="66" selection-start-column="28" selection-end-line="66" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/script.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fambudget/tests/test_budgetParser.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="10" column="67" selection-start-line="10" selection-start-column="67" selection-end-line="10" selection-end-column="67" />
-          <folding>
-            <element signature="e#0#14#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="16" selection-start-line="1" selection-start-column="16" selection-end-line="1" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/fambudget/budgetparser.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="391">
@@ -640,7 +668,6 @@
     <entry file="file://$PROJECT_DIR$/script.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/fambudget/__init__.py" />
     <entry file="file://C:/Python3/Lib/site-packages/cubes/tutorial/sql.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="515">
@@ -677,39 +704,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-line="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/alembic/README">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/alembic/env.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-510">
-          <folding>
-            <element signature="e#0#37#0" expanded="true" />
-          </folding>
-        </state>
+        <state relative-caret-position="-510" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/alembic.ini">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="697">
           <caret line="74" selection-start-line="74" selection-end-line="74" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/alembic/versions/08a9721b683a_create_single_currency_spending_table.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="23" column="36" selection-start-line="23" selection-start-column="31" selection-end-line="23" selection-end-column="36" />
-          <folding>
-            <element signature="e#123#145#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -720,64 +726,142 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/fambudget/budgetparser.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="379">
-          <caret line="81" column="34" selection-start-line="81" selection-start-column="34" selection-end-line="81" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/alembic/versions/9933b59d2c41_add_row_index_column_to_single_currency_.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="22" column="8" selection-start-line="22" selection-start-column="8" selection-end-line="22" selection-end-column="8" />
+        <state relative-caret-position="306">
+          <caret line="19" selection-start-line="19" selection-end-line="19" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/fambudget/repository.py">
+    <entry file="file://$PROJECT_DIR$/config.py.stub">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="107">
-          <caret line="14" selection-start-line="14" selection-end-line="15" />
-          <folding>
-            <element signature="e#0#29#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="51">
+          <caret line="3" column="38" selection-start-line="3" selection-start-column="38" selection-end-line="3" selection-end-column="38" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
+      <provider editor-type-id="text-editor">
+        <state>
+          <caret column="2" selection-start-column="2" selection-end-column="2" />
+        </state>
+      </provider>
       <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="395">
-            <caret line="33" selection-start-line="33" selection-end-line="33" />
+          <first_editor relative-caret-position="442">
+            <caret line="26" column="22" selection-start-line="26" selection-start-column="22" selection-end-line="26" selection-end-column="22" />
           </first_editor>
           <second_editor>
             <markdownNavigatorState />
           </second_editor>
         </state>
       </provider>
-      <provider editor-type-id="text-editor">
-        <state>
-          <caret column="2" selection-start-column="2" selection-end-column="2" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/fambudget/tests/test_budgetParser.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="302">
-          <caret line="23" column="27" selection-start-line="23" selection-start-column="27" selection-end-line="23" selection-end-column="27" />
+        <state relative-caret-position="289">
+          <caret line="17" column="12" lean-forward="true" selection-start-line="17" selection-start-column="12" selection-end-line="17" selection-end-column="12" />
           <folding>
             <element signature="e#0#14#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/fambudget/__init__.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/alembic/versions/08a9721b683a_create_single_currency_spending_table.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="276">
+          <caret line="22" column="14" lean-forward="true" selection-start-line="22" selection-start-column="14" selection-end-line="22" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="42" selection-start-line="2" selection-start-column="42" selection-end-line="2" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/constants.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="31" selection-start-line="4" selection-start-column="31" selection-end-line="4" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Python3/Lib/site-packages/openpyxl/writer/excel.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="269" column="4" selection-start-line="269" selection-start-column="4" selection-end-line="269" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Python3/Lib/site-packages/openpyxl/workbook/workbook.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="371" column="20" lean-forward="true" selection-start-line="371" selection-start-column="20" selection-end-line="371" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Python3/Lib/site-packages/openpyxl/reader/excel.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="182">
+          <caret line="144" column="4" selection-start-line="144" selection-start-column="4" selection-end-line="144" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_PLUGINS_DIR$/python-ce/helpers/typeshed/stdlib/2and3/datetime.pyi">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/alembic/versions/9fdaf56bb8e5_create_table_for_exchange_rates.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="21" column="32" selection-start-line="21" selection-start-column="19" selection-end-line="21" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/import_rates.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="6" selection-start-line="1" selection-start-column="6" selection-end-line="1" selection-end-column="6" />
+          <folding>
+            <element signature="e#343#376#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dbtables/repository.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="183">
+          <caret line="81" selection-start-line="81" selection-end-line="81" />
+          <folding>
+            <element signature="e#0#29#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/script.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="430">
-          <caret line="34" column="46" selection-start-line="34" selection-start-column="46" selection-end-line="34" selection-end-column="46" />
+        <state relative-caret-position="379">
+          <caret line="32" column="60" selection-start-line="32" selection-start-column="60" selection-end-line="32" selection-end-column="60" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fambudget/budgetparser.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="430">
+          <caret line="82" column="45" selection-start-line="82" selection-start-column="45" selection-end-line="82" selection-end-column="45" />
         </state>
       </provider>
     </entry>

@@ -1,4 +1,5 @@
 ﻿config = {
     'wallets': ["W1", "W2", "W3", "W4"],
-    'currency_sets': {0: "RUB", 1: "EUR"}
+    'currency_sets': {0: "RUB", 1: "EUR"},
+    'default_filename': 'somefile.xls'
 }
