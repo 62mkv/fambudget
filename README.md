@@ -7,7 +7,12 @@ data from an XLS-file ("family budget"), parsing them and combining
 into a dataset (SQLite), that is compatible with [Cubes][1] framework and
 [CubesViewer][2] visualization.
 
-### To create/append to a database:
+### To create a database:
+
+Run `alembic upgrade head`
+
+### To append to a database:
+
 Put the XLS-file into the root folder of this project and run the
 program as
 

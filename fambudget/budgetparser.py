@@ -72,7 +72,7 @@ class BudgetParser:
                     values = [self.sheet.cell(row, col).value for col in cols]
                     amount = sum([float(x) for x in values if x], 0)
 
-                    if amount < 0:
+                    if amount < 0 or amount > 0:
                         spending = dict()
                         spending.update(record)
                         spending['currency'] = currency

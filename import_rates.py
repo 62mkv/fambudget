@@ -1,10 +1,10 @@
 # DONE: create a table for exchange rates
 # DONE: implement import from xlsx
-# TODO: implement import from cbr API
-# TODO: create a table for multi-currency transactions (separate row per currency)
 # TODO: update import fambudget to include also positive amounts
+# TODO: create a table for multi-currency transactions (separate row per currency)
 # TODO: create a procedure to fill multi-currency table
-# TODO: update mappings
+# TODO: update mappings.json in order to be able to build cubes for multi-currency table
+# TODO: implement import from cbr API
 from openpyxl.reader import excel
 from datetime import timedelta
 from dbtables import repository

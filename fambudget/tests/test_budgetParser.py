@@ -1,9 +1,9 @@
 import pathlib
-from datetime import datetime
+from datetime import date
 from unittest import TestCase
 
-from fambudget.budgetparser import BudgetParser
 from constants import RRU, EUR
+from fambudget.budgetparser import BudgetParser
 
 (
     CARD_W,
@@ -54,7 +54,7 @@ class TestBudgetParser(TestCase):
                      CATEGORY: 'Обязательные платежи',
                      CURRENCY: 'RUB',
                      ROW_NUMBER: 2,
-                     SPENT_ON: '2018-02-01',
+                     SPENT_ON: date(2018, 2, 1),
                      SUBCOUNT1: 'Коммунальные',
                      SUBCOUNT2: '',
                      SUBJECT: 'Семья'},
@@ -62,7 +62,7 @@ class TestBudgetParser(TestCase):
                      CATEGORY: 'Обязательные платежи',
                      CURRENCY: 'EUR',
                      ROW_NUMBER: 2,
-                     SPENT_ON: '2018-02-01',
+                     SPENT_ON: date(2018, 2, 1),
                      SUBCOUNT1: 'Коммунальные',
                      SUBCOUNT2: '',
                      SUBJECT: 'Семья'},
@@ -70,7 +70,7 @@ class TestBudgetParser(TestCase):
                      CATEGORY: 'Обязательные платежи',
                      CURRENCY: 'RUB',
                      ROW_NUMBER: 3,
-                     SPENT_ON: '2018-02-01',
+                     SPENT_ON: date(2018, 2, 1),
                      SUBCOUNT1: 'Интернет',
                      SUBCOUNT2: '',
                      SUBJECT: 'Жена'},
@@ -78,7 +78,7 @@ class TestBudgetParser(TestCase):
                      CATEGORY: 'Отдых',
                      CURRENCY: 'RUB',
                      ROW_NUMBER: 8,
-                     SPENT_ON: '2018-02-02',
+                     SPENT_ON: date(2018, 2, 2),
                      SUBCOUNT1: 'Алкоголь',
                      SUBCOUNT2: 'Пиво',
                      SUBJECT: 'Муж'},
@@ -86,10 +86,26 @@ class TestBudgetParser(TestCase):
                      CATEGORY: 'Отдых',
                      CURRENCY: 'EUR',
                      ROW_NUMBER: 8,
-                     SPENT_ON: '2018-02-02',
+                     SPENT_ON: date(2018, 2, 2),
                      SUBCOUNT1: 'Алкоголь',
                      SUBCOUNT2: 'Пиво',
-                     SUBJECT: 'Муж'}
+                     SUBJECT: 'Муж'},
+                    {AMOUNT: -750.0,
+                     CATEGORY: 'Проводка',
+                     CURRENCY: 'RUB',
+                     ROW_NUMBER: 9,
+                     SPENT_ON: date(2018, 2, 2),
+                     SUBCOUNT1: 'Обмен валюты',
+                     SUBCOUNT2: '',
+                     SUBJECT: 'Семья'},
+                    {AMOUNT: 10.0,
+                     CATEGORY: 'Проводка',
+                     CURRENCY: 'EUR',
+                     ROW_NUMBER: 9,
+                     SPENT_ON: date(2018, 2, 2),
+                     SUBCOUNT1: 'Обмен валюты',
+                     SUBCOUNT2: '',
+                     SUBJECT: 'Семья'}
                     ]
         self.assertEqual(expected, list(self.p.process_next_record()))
 
@@ -98,7 +114,7 @@ class TestBudgetParser(TestCase):
                      CATEGORY: 'Отдых',
                      CURRENCY: 'RUB',
                      ROW_NUMBER: 8,
-                     SPENT_ON: '2018-02-02',
+                     SPENT_ON: date(2018, 2, 2),
                      SUBCOUNT1: 'Алкоголь',
                      SUBCOUNT2: 'Пиво',
                      SUBJECT: 'Муж'},
@@ -106,8 +122,24 @@ class TestBudgetParser(TestCase):
                      CATEGORY: 'Отдых',
                      CURRENCY: 'EUR',
                      ROW_NUMBER: 8,
-                     SPENT_ON: '2018-02-02',
+                     SPENT_ON: date(2018, 2, 2),
                      SUBCOUNT1: 'Алкоголь',
                      SUBCOUNT2: 'Пиво',
-                     SUBJECT: 'Муж'}]
-        self.assertEqual(expected, list(self.p.process_next_record(datetime.strptime('2018-02-02', '%Y-%m-%d').date())))
+                     SUBJECT: 'Муж'},
+                    {'amount': -750.0,
+                     'category': 'Проводка',
+                     'currency': 'RUB',
+                     'row_index': 9,
+                     'spent_on': date(2018, 2, 2),
+                     'subcount1': 'Обмен валюты',
+                     'subcount2': '',
+                     'subject': 'Семья'},
+                    {'amount': 10.0,
+                     'category': 'Проводка',
+                     'currency': 'EUR',
+                     'row_index': 9,
+                     'spent_on': date(2018, 2, 2),
+                     'subcount1': 'Обмен валюты',
+                     'subcount2': '',
+                     'subject': 'Семья'}]
+        self.assertEqual(expected, list(self.p.process_next_record(date(2018, 2, 2))))
