@@ -5,9 +5,8 @@ Revises:
 Create Date: 2018-07-04 19:11:44.408857
 
 """
-from alembic import op
 import sqlalchemy as sa
-
+from alembic import op
 
 # revision identifiers, used by Alembic.
 revision = '08a9721b683a'
@@ -17,7 +16,6 @@ depends_on = None
 
 
 def upgrade():
-
     op.create_table(
         'fambudget',
         sa.Column('id', sa.Integer, primary_key=True),
