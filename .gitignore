@@ -1,4 +1,6 @@
+__pycache__/
+source-data/
+data/
 config.py
 *.sqlite
-__pycache__/
 *.xls

@@ -71,6 +71,7 @@ class Repository:
 
     def fill_table_with_records(self, records, date_field_name='spent_on'):
         insert_command = self.table.insert()
+        processed_date = None
 
         counter = 0
         for record in records:
@@ -89,7 +90,7 @@ class Repository:
 
         return starting_date
 
-    def delete_from_date(self, start_date):
+    def delete_data_since_date(self, start_date):
         if start_date:
             self.engine \
                 .execute(sqlalchemy.sql.expression.delete(self.table).where(self.table.c.spent_on >= start_date))

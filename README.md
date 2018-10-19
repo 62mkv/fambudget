@@ -13,10 +13,10 @@ Run `alembic upgrade head`
 
 ### To append to a database:
 
-Put the XLS-file into the root folder of this project and run the
+Put the XLS-file into the `source-data` folder of this project and run the
 program as
 
-```python script.py [--fromdate YYYY-MM-DD]```
+```python script.py [--fromdate YYYY-MM-DD] --filename=source-data/<filename.xls>```
 
 If `fromdate` is specified, parser will overwrite all data that might
 be stored in a database, that are later than the date specified,

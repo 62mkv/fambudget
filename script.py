@@ -4,8 +4,8 @@ import time
 from datetime import datetime
 
 from config import config
-from fambudget import budgetparser
 from dbtables import repository
+from fambudget import budgetparser
 
 argparser = argparse.ArgumentParser()
 argparser.add_argument("--fromdate", type=str, help="Process spending data, starting from this date (YYYY-MM-DD)")
@@ -16,7 +16,7 @@ path = os.path.dirname(__file__)
 filename = args.filename or (path + config['default_filename'])
 
 parser = budgetparser.BudgetParser(filename, config)
-repo = repository.Repository('sqlite:///data.sqlite', 'fambudget')
+repo = repository.Repository('sqlite:///data/data.sqlite', 'fambudget')
 last_date = repo.get_latest_record_date()
 if args.fromdate:
     fromdate = datetime.strptime(args.fromdate, '%Y-%m-%d').date()
@@ -29,7 +29,7 @@ if args.fromdate:
 print('Parsing XLS file', filename, 'from date', last_date)
 start = time.time()
 
-repo.delete_from_date(last_date)
+repo.delete_data_since_date(last_date)
 new_last_date = repo.fill_table_with_records(parser.process_next_record(last_date))
 print('Parsing XLS file completed; last processed date is', new_last_date)
 end = time.time()
