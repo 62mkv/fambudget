@@ -7,6 +7,8 @@ from config import config
 from dbtables import repository
 from fambudget import budgetparser
 
+DATABASE_FILE = 'sqlite:///data/data.sqlite'
+
 argparser = argparse.ArgumentParser()
 argparser.add_argument("--fromdate", type=str, help="Process spending data, starting from this date (YYYY-MM-DD)")
 argparser.add_argument("--filename", type=str, help="Full path of XLS file to parse from")
@@ -16,7 +18,7 @@ path = os.path.dirname(__file__)
 filename = args.filename or (path + config['default_filename'])
 
 parser = budgetparser.BudgetParser(filename, config)
-repo = repository.Repository('sqlite:///data/data.sqlite', 'fambudget')
+repo = repository.SingleCurrencyTable(DATABASE_FILE)
 last_date = repo.get_latest_record_date()
 if args.fromdate:
     fromdate = datetime.strptime(args.fromdate, '%Y-%m-%d').date()

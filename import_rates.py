@@ -6,7 +6,7 @@
 # 2) create table with columns: currency, amount, row_index
 # DONE: create table for aggregated data
 # 3) create table with columns: row_index, amount_rub, amount_eur
-# TODO: create a procedure to multi-currency tables
+# TODO: create a procedure to fill normalized tables based on denormalized (fambudget) one
 """
 Currently, script was used to populate data:
 
@@ -16,12 +16,9 @@ Currently, script was used to populate data:
   insert into spending_amounts (row_index, amount, currency)
   select row_index, amount, currency from fambudget
 """
-# TODO: create a procedure to fill aggregated table
-# for each row_index,
-#     take all rub amounts, save as rub + convert to eur
-#     take all eur amounts, add to eur saved + convert to rub and add to rub saved
-#     insert record into aggregated table
-# TODO: update mappings.json in order to be able to build cubes for multi-currency table
+# DONE: update model.json to support normalized tables (spendings/spending_amounts)
+# TODO: update model.json: add cube for aggregated table
+# TODO: replace current import to support normalized tables
 # TODO: implement import from cbr API
 from datetime import timedelta
 
@@ -54,5 +51,5 @@ def read_values(filename):
         row += 1
 
 
-table = repository.Repository('sqlite:///data/data.sqlite', 'exchange_rate')
-table.fill_table_with_records(read_values("source-data/RC_F01_01_2008_T05_07_2018.xlsx"), date_field_name='date')
+table = repository.TableWithDateField('sqlite:///data/data.sqlite', 'exchange_rate', 'date')
+table.fill_table_with_records(read_values("source-data/RC_F01_01_2008_T05_07_2018.xlsx"))

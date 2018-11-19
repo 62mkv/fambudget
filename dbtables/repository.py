@@ -1,32 +1,41 @@
 import sqlalchemy
 
-from constants import EUR, RRU, SINGLE_CURRENCY, MULTI_CURRENCY, EXCHANGE_RATE
+from constants import EUR, RRU, SINGLE_CURRENCY, MULTI_CURRENCY, EXCHANGE_RATE, SPENDINGS, SPENDING_AMOUNTS
 
 SCHEMA = {
     SINGLE_CURRENCY: [
-        ("amount", "float"),
-        ("category", "string"),
-        ("currency", "string"),
         ("row_index", "integer"),
         ("spent_on", "date"),
         ("subject", "string"),
+        ("category", "string"),
         ("subcount1", "string"),
-        ("subcount2", "string")
+        ("subcount2", "string"),
+        ("currency", "string"),
+        ("amount", "float"),
     ],
     MULTI_CURRENCY: [
+        ("row_index", "integer"),
         ("amount_" + EUR, "float"),
         ("amount_" + RRU, "float"),
-        ("category", "string"),
-        ("spent_on", "date"),
-        ("subject", "string"),
-        ("subcount1", "string"),
-        ("subcount2", "string")
     ],
     EXCHANGE_RATE: [
         ("base_currency", "string"),
         ("other_currency", "string"),
         ("rate", "float"),
         ("date", "date")
+    ],
+    SPENDINGS: [
+        ("row_index", "integer"),
+        ("spent_on", "date"),
+        ("subject", "string"),
+        ("category", "string"),
+        ("subcount1", "string"),
+        ("subcount2", "string"),
+    ],
+    SPENDING_AMOUNTS: [
+        ("row_index", "integer"),
+        ("currency", "string"),
+        ("amount", "float"),
     ]
 }
 
@@ -69,7 +78,19 @@ class Repository:
             create_id=True
         )
 
-    def fill_table_with_records(self, records, date_field_name='spent_on'):
+class RowIndexTable(Repository):
+    def __init__(self, filename, tablename):
+        # TODO: this is a bug! it's a list of tuples, not a dict
+        if (SCHEMA[tablename].get("row_index") is None):
+            raise AttributeError("This table has no row_index attribute")
+        super().__init__(filename, tablename)
+
+class TableWithDateField(Repository):
+    def __init__(self, filename, tablename, date_field_name):
+        super().__init__(filename, tablename)
+        self.date_field_name = date_field_name
+
+    def fill_table_with_records(self, records):
         insert_command = self.table.insert()
         processed_date = None
 
@@ -79,7 +100,7 @@ class Repository:
             if counter % 1000 == 0:
                 print(counter, record)
             insert_command.execute(record)
-            processed_date = record[date_field_name]
+            processed_date = record[self.date_field_name]
 
         return processed_date
 
@@ -94,3 +115,8 @@ class Repository:
         if start_date:
             self.engine \
                 .execute(sqlalchemy.sql.expression.delete(self.table).where(self.table.c.spent_on >= start_date))
+
+
+class SingleCurrencyTable(TableWithDateField):
+    def __init__(self, filename):
+        super().__init__(filename, SINGLE_CURRENCY, 'spent_on')
