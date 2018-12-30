@@ -2,14 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="caacd6b1-46c1-44d1-9fe5-8f9edb39dfd9" name="Default" comment="added model for normalized tables; some preliminary work to support aggregation later">
-      <change afterPath="$PROJECT_DIR$/fambudget/aggregator.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/constants.py" beforeDir="false" afterPath="$PROJECT_DIR$/constants.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dbtables/repository.py" beforeDir="false" afterPath="$PROJECT_DIR$/dbtables/repository.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/import_rates.py" beforeDir="false" afterPath="$PROJECT_DIR$/import_rates.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model.json" beforeDir="false" afterPath="$PROJECT_DIR$/model.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/script.py" beforeDir="false" afterPath="$PROJECT_DIR$/script.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/slicer.ini" beforeDir="false" afterPath="$PROJECT_DIR$/slicer.ini" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -22,7 +15,7 @@
     <session id="-405980447">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="10" />
+          <entry key="project.closed" value="11" />
           <entry key="project.open.time.10" value="2" />
           <entry key="project.open.time.11" value="1" />
           <entry key="project.open.time.7" value="1" />
@@ -496,7 +489,14 @@
       <option name="project" value="LOCAL" />
       <updated>1539971185035</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="added model for normalized tables; some preliminary work to support aggregation later">
+      <created>1542661715632</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1542661715632</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -542,7 +542,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1696" height="1026" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6494157" visible="true" weight="0.3594132" />
       <window_info auto_hide="true" id="Structure" order="1" sideWeight="0.3505843" side_tool="true" type="SLIDING" weight="0.29889977" />
@@ -555,13 +554,13 @@
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39932886" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49572128" weight="0.32922733" />
+      <window_info active="true" anchor="bottom" id="TODO" order="6" sideWeight="0.49511003" visible="true" weight="0.32922733" />
       <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.49694377" weight="0.32922733" />
       <window_info anchor="bottom" id="Inspection Results" order="8" weight="0.32994187" />
       <window_info anchor="bottom" id="DB Execution Console" order="9" />
       <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.49755502" weight="0.32922733" />
-      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.5012225" side_tool="true" visible="true" weight="0.32922733" />
-      <window_info active="true" anchor="bottom" id="Messages" order="12" sideWeight="0.4987775" visible="true" weight="0.32922733" />
+      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.50488997" side_tool="true" visible="true" weight="0.32922733" />
+      <window_info anchor="bottom" id="Messages" order="12" sideWeight="0.4987775" weight="0.32922733" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
