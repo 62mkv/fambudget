@@ -6,7 +6,6 @@
 # 2) create table with columns: currency, amount, row_index
 # DONE: create table for aggregated data
 # 3) create table with columns: row_index, amount_rub, amount_eur
-# TODO: create a procedure to fill normalized tables based on denormalized (fambudget) one
 """
 Currently, script was used to populate data:
 
@@ -17,7 +16,7 @@ Currently, script was used to populate data:
   select row_index, amount, currency from fambudget
 """
 # DONE: update model.json to support normalized tables (spendings/spending_amounts)
-# TODO: update model.json: add cube for aggregated table
+# TODO: update model.json: add cube for aggregated (multi-currency) table
 # TODO: replace current import to support normalized tables
 # TODO: implement import from cbr API
 from datetime import timedelta

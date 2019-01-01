@@ -18,6 +18,7 @@ def aggregate_spendings():
     """
 
 # TODO: create a procedure to fill aggregated table
+    # TODO: before doing this, make sure the raw data is imported into spendings+spending_amounts tables, not to a fambudget table
 # calculate last row_index of the aggregated table
 # calculate last row_index in spendings
 # determine rows one needs to convert (every row from last one in the aggregated table to the last one in spendings)
@@ -26,6 +27,8 @@ def aggregate_spendings():
 #     take all rub amounts, save as rub + convert to eur
 #     take all eur amounts, add to eur saved + convert to rub and add to rub saved
 #     insert record into aggregated table
+
+    # below goes the implementation
     agg_last = agg_calculate_last_row()
     spending_last = spendings_calculate_last_row()
 

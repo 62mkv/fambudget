@@ -1,4 +1,6 @@
 import sqlalchemy
+from sqlalchemy.sql import func
+from sqlalchemy.sql.expression import select
 
 from constants import EUR, RRU, SINGLE_CURRENCY, MULTI_CURRENCY, EXCHANGE_RATE, SPENDINGS, SPENDING_AMOUNTS
 
@@ -70,37 +72,45 @@ def create_table(engine, table_name, fields, create_id=False, schema=None):
 class Repository:
     def __init__(self, filename, tablename):
         self.engine = sqlalchemy.create_engine(filename)
-
         self.table = create_table(
             engine=self.engine,
             table_name=tablename,
             fields=SCHEMA[tablename],
             create_id=True
         )
+        self.insert_command = self.table.insert()
+
+    def insert_record(self, record):
+        self.insert_command.execute(record)
+
 
 class RowIndexTable(Repository):
     def __init__(self, filename, tablename):
-        # TODO: this is a bug! it's a list of tuples, not a dict
-        if (SCHEMA[tablename].get("row_index") is None):
+        if (dict(SCHEMA[tablename]).get("row_index") is None):
             raise AttributeError("This table has no row_index attribute")
         super().__init__(filename, tablename)
 
+    def delete_data_since_row(self, start_row):
+        if start_row:
+            self.engine \
+                .execute(sqlalchemy.sql.expression.delete(self.table).where(self.table.c.row_index >= start_row))
+
+
+
 class TableWithDateField(Repository):
-    def __init__(self, filename, tablename, date_field_name):
+    def __init__(self, filename, tablename):
         super().__init__(filename, tablename)
-        self.date_field_name = date_field_name
 
     def fill_table_with_records(self, records):
-        insert_command = self.table.insert()
         processed_date = None
 
         counter = 0
         for record in records:
+            self.insert_record(record)
             counter += 1
             if counter % 1000 == 0:
                 print(counter, record)
-            insert_command.execute(record)
-            processed_date = record[self.date_field_name]
+            processed_date = record["spent_on"]
 
         return processed_date
 
@@ -119,4 +129,21 @@ class TableWithDateField(Repository):
 
 class SingleCurrencyTable(TableWithDateField):
     def __init__(self, filename):
-        super().__init__(filename, SINGLE_CURRENCY, 'spent_on')
+        super().__init__(filename, SINGLE_CURRENCY)
+
+
+class SpendingsTable(RowIndexTable, TableWithDateField):
+    def __init__(self, filename):
+        super(RowIndexTable, self).__init__(filename, SPENDINGS)
+        super(TableWithDateField, self).__init__(filename, SPENDINGS)
+
+    def get_least_row_index_for_date(self, date):
+        if date:
+            conn = self.engine.connect()
+            stmt = select([func.min(self.table.c.row_index)]).where(self.table.c.spent_on >= date)
+            return conn.execute(stmt).scalar()
+
+
+class SpendingAmountsTable(RowIndexTable):
+    def __init__(self, filename):
+        super().__init__(filename, SPENDING_AMOUNTS)
