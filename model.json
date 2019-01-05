@@ -184,6 +184,62 @@
       }
     },
     {
+      "name": "spending_amount_multi_currency",
+      "label": "Multi-currency (normalized)",
+      "dimensions": [
+        "subject",
+        "item",
+        "currency",
+        "spending_date"
+      ],
+      "measures": [
+        "amount"
+      ],
+      "aggregates": [
+        {
+          "name": "amount_sum",
+          "function": "sum",
+          "measure": "amount"
+        },
+        {
+          "name": "record_count",
+          "function": "count"
+        }
+      ],
+      "joins": [
+        {
+          "master": "spending_amount_multi_currency.row_index",
+          "detail": "spendings.row_index"
+        }
+      ],
+      "mappings": {
+        "subject": "spendings.subject",
+        "item.subcount1": "spendings.subcount1",
+        "item.subcount2": "spendings.subcount2",
+        "item.category": "spendings.category",
+        "spending_date.year": {
+          "table": "spendings",
+          "column": "spent_on",
+          "extract": "year"
+        },
+        "spending_date.month": {
+          "table": "spendings",
+          "column": "spent_on",
+          "extract": "month"
+        },
+        "spending_date.week": {
+          "table": "spendings",
+          "column": "spent_on",
+          "extract": "week"
+        },
+        "spending_date.day": {
+          "table": "spendings",
+          "column": "spent_on",
+          "extract": "day"
+        }
+      }
+    },
+    {
       "name": "fambudget",
       "label": "Family Budget",
       "dimensions": [

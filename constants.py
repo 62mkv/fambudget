@@ -12,5 +12,5 @@ SPENDINGS = 'spendings'
 # this table stores amounts of spendings in 'native' currencies (multiple records per spending)
 SPENDING_AMOUNTS = 'spending_amounts'
 
-# this table stores amounts of spendings in all of the currencies (one record per spending)
-MULTI_CURRENCY = 'agg_multi_currency'
+# this table stores amounts of spendings, aggregated in each of the currencies (one record per spending per currency)
+MULTI_CURRENCY = 'spending_amount_multi_currency'

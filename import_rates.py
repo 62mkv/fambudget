@@ -17,7 +17,6 @@ Currently, script was used to populate data:
 """
 # DONE: update model.json to support normalized tables (spendings/spending_amounts)
 # TODO: update model.json: add cube for aggregated (multi-currency) table
-# TODO: replace current import to support normalized tables
 # TODO: implement import from cbr API
 from datetime import timedelta
 

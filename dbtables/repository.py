@@ -2,7 +2,13 @@ import sqlalchemy
 from sqlalchemy.sql import func
 from sqlalchemy.sql.expression import select
 
-from constants import EUR, RRU, SINGLE_CURRENCY, MULTI_CURRENCY, EXCHANGE_RATE, SPENDINGS, SPENDING_AMOUNTS
+from constants import SINGLE_CURRENCY, MULTI_CURRENCY, EXCHANGE_RATE, SPENDINGS, SPENDING_AMOUNTS
+
+SPENDING_AMOUNTS_SCHEMA = [
+    ("row_index", "integer"),
+    ("currency", "string"),
+    ("amount", "float"),
+]
 
 SCHEMA = {
     SINGLE_CURRENCY: [
@@ -15,11 +21,7 @@ SCHEMA = {
         ("currency", "string"),
         ("amount", "float"),
     ],
-    MULTI_CURRENCY: [
-        ("row_index", "integer"),
-        ("amount_" + EUR, "float"),
-        ("amount_" + RRU, "float"),
-    ],
+    MULTI_CURRENCY: SPENDING_AMOUNTS_SCHEMA,
     EXCHANGE_RATE: [
         ("base_currency", "string"),
         ("other_currency", "string"),
@@ -34,11 +36,7 @@ SCHEMA = {
         ("subcount1", "string"),
         ("subcount2", "string"),
     ],
-    SPENDING_AMOUNTS: [
-        ("row_index", "integer"),
-        ("currency", "string"),
-        ("amount", "float"),
-    ]
+    SPENDING_AMOUNTS: SPENDING_AMOUNTS_SCHEMA
 }
 
 
@@ -71,12 +69,12 @@ def create_table(engine, table_name, fields, create_id=False, schema=None):
 
 class Repository:
     def __init__(self, filename, tablename):
-        self.engine = sqlalchemy.create_engine(filename)
+        self.engine = sqlalchemy.create_engine(filename, echo=False)
         self.table = create_table(
             engine=self.engine,
             table_name=tablename,
             fields=SCHEMA[tablename],
-            create_id=True
+            create_id=False,
         )
         self.insert_command = self.table.insert()
 
@@ -95,11 +93,19 @@ class RowIndexTable(Repository):
             self.engine \
                 .execute(sqlalchemy.sql.expression.delete(self.table).where(self.table.c.row_index >= start_row))
 
+    def get_last_row_index(self):
+        return self.engine \
+            .execute(sqlalchemy.select([sqlalchemy.func.max(self.table.c.row_index)])) \
+            .fetchone()[0]
+
+    def get_records_with_row_index(self, row):
+        return self.engine.execute(sqlalchemy.select(self.table.columns).where(self.table.c.row_index == row))
 
 
 class TableWithDateField(Repository):
-    def __init__(self, filename, tablename):
+    def __init__(self, filename, tablename, date_column='spent_on'):
         super().__init__(filename, tablename)
+        self.date_column_name = date_column
 
     def fill_table_with_records(self, records):
         processed_date = None
@@ -110,7 +116,7 @@ class TableWithDateField(Repository):
             counter += 1
             if counter % 1000 == 0:
                 print(counter, record)
-            processed_date = record["spent_on"]
+            processed_date = record[self.date_column_name]
 
         return processed_date
 
@@ -147,3 +153,8 @@ class SpendingsTable(RowIndexTable, TableWithDateField):
 class SpendingAmountsTable(RowIndexTable):
     def __init__(self, filename):
         super().__init__(filename, SPENDING_AMOUNTS)
+
+
+class SpendingMultiCurrencyAmounts(RowIndexTable):
+    def __init__(self, filename):
+        super().__init__(filename, MULTI_CURRENCY)

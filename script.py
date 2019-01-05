@@ -5,7 +5,8 @@ from datetime import datetime
 
 from config import config
 from fambudget import budgetparser
-from fambudget.importer import FambudgetImporter, NormalizedImporter
+from fambudget.aggregator import Aggregator
+from fambudget.importer import NormalizedImporter
 
 DATABASE_FILE = config['database']
 
@@ -43,5 +44,10 @@ def import_data(importer, title, iterator_retriever):
     print('Processing took', end - start, 'seconds')
 
 
-import_data(FambudgetImporter(DATABASE_FILE), "fambudget table", lambda x: parser.process_next_record(x))
+# import_data(FambudgetImporter(DATABASE_FILE), "fambudget table", lambda x: parser.process_next_record(x))
 import_data(NormalizedImporter(DATABASE_FILE), "normalized tables", lambda x: parser.retrieve_spending_info(x))
+
+aggregator = Aggregator(DATABASE_FILE)
+print('Beginning aggregation of data')
+aggregator.aggregate_spendings()
+print('Aggregation of data complete')
