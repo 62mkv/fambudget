@@ -158,3 +158,15 @@ class SpendingAmountsTable(RowIndexTable):
 class SpendingMultiCurrencyAmounts(RowIndexTable):
     def __init__(self, filename):
         super().__init__(filename, MULTI_CURRENCY)
+
+
+class CurrencyRates(TableWithDateField):
+    def __init__(self, filename):
+        super().__init__(filename, EXCHANGE_RATE, 'date')
+
+    def get_rate_for_date(self, currency_from, currency_to, date):
+        return self.engine.execute(sqlalchemy.select([self.table.c.rate])
+                                   .where((self.table.c[self.date_column_name] == date)
+                                          & (self.table.c.base_currency == currency_from)
+                                          & (self.table.c.other_currency == currency_to)
+                                          )).fetchone()[0]

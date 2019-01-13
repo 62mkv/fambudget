@@ -2,6 +2,8 @@ from collections import namedtuple
 
 import xlrd
 
+from dbtables.structure import SpendingAmount, Spending
+
 (
     SPENDING,
     INCOME,
@@ -9,8 +11,6 @@ import xlrd
 ) = ('spending', 'income', 'movement')
 
 SpendingWithAmounts = namedtuple('SpendingWithAmounts', ['spending', 'amounts'])
-Spending = namedtuple('Spending', ['row_index', 'spent_on', 'subject', 'category', 'subcount1', 'subcount2'])
-Amount = namedtuple('Amount', ['row_index', 'currency', 'amount'])
 
 class BudgetParser:
 
@@ -94,7 +94,7 @@ class BudgetParser:
                     amount = sum([float(x) for x in values if x], 0)
 
                     if amount < 0 or amount > 0:
-                        amount_record = Amount(row, currency, amount)
+                        amount_record = SpendingAmount(row, currency, amount)
                         spending_with_amounts.amounts.append(amount_record)
 
                 yield spending_with_amounts

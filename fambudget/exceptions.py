@@ -1,0 +1,2 @@
+class SpendingRowNotFound(Exception):
+    pass

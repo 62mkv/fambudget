@@ -27,6 +27,13 @@ from dbtables import repository
 
 
 def read_values(filename):
+    """
+    In order to import data, download XLS file from this web page:
+    https://www.cbr.ru/currency_base/dynamics/?UniDbQuery.Posted=True&UniDbQuery.mode=1&UniDbQuery.date_req1=&UniDbQuery.date_req2=&UniDbQuery.VAL_NM_RQ=R01239
+
+    :param filename: like source-data/RC_F01_01_2008_T05_07_2018.xlsx
+    :return:
+    """
     wb = excel.load_workbook(filename=filename)
 
     ws = wb.worksheets[0]
@@ -49,5 +56,6 @@ def read_values(filename):
         row += 1
 
 
-table = repository.TableWithDateField('sqlite:///data/data.sqlite', 'exchange_rate', 'date')
-table.fill_table_with_records(read_values("source-data/RC_F01_01_2008_T05_07_2018.xlsx"))
+table = repository.CurrencyRates('sqlite:///data/data.sqlite')
+# table.fill_table_with_records(read_values("source-data/RC_F01_01_2008_T05_07_2018.xlsx"))
+table.fill_table_with_records(read_values("source-data/RC_F05_07_2018_T12_01_2019.xlsx"))
