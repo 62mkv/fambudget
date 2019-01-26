@@ -21,17 +21,7 @@ filename = args.filename or (path + config['default_filename'])
 parser = budgetparser.BudgetParser(filename, config)
 
 
-def import_data(importer, title, iterator_retriever):
-    last_date = importer.get_last_date()
-
-    if args.fromdate:
-        fromdate = datetime.strptime(args.fromdate, '%Y-%m-%d').date()
-        if last_date:
-            if fromdate < last_date:
-                last_date = fromdate
-        else:
-            last_date = fromdate
-
+def import_data(importer, title, last_date, iterator_retriever):
     print('Parsing XLS file', filename, 'from date', last_date)
     start = time.time()
 
@@ -44,10 +34,21 @@ def import_data(importer, title, iterator_retriever):
     print('Processing took', end - start, 'seconds')
 
 
+importer = NormalizedImporter(DATABASE_FILE)
+last_date = importer.get_last_date()
+
+if args.fromdate:
+    fromdate = datetime.strptime(args.fromdate, '%Y-%m-%d').date()
+    if last_date:
+        if fromdate < last_date:
+            last_date = fromdate
+    else:
+        last_date = fromdate
+
 # import_data(FambudgetImporter(DATABASE_FILE), "fambudget table", lambda x: parser.process_next_record(x))
-import_data(NormalizedImporter(DATABASE_FILE), "normalized tables", lambda x: parser.retrieve_spending_info(x))
+import_data(importer, "normalized tables", last_date, lambda x: parser.retrieve_spending_info(x))
 
 aggregator = Aggregator(DATABASE_FILE)
 print('Beginning aggregation of data')
-aggregator.aggregate_spendings()
+aggregator.aggregate_spendings_since_date(last_date)
 print('Aggregation of data complete')

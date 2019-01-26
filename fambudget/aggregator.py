@@ -13,17 +13,19 @@ class Aggregator:
         self.rates = CurrencyRates(filename)
         self.currencies = config['currency_sets'].values()
 
-    def aggregate_spendings(self):
+    def aggregate_spendings_since_date(self, last_date):
         """
         Fills the table of aggregated spendings by scanning the spendings/spending_amounts tables
 
         :return: None
         """
-
-        # TODO: create a procedure to fill aggregated table
+        # delete rows since last_date
+        row_for_last_date = self.spendings.get_least_row_index_for_date(last_date)
+        self.spending_multi_currency_amounts.delete_data_since_row(row_for_last_date)
 
         # calculate last row_index of the aggregated table
         agg_last = self.agg_calculate_last_row()
+
         # calculate last row_index in spendings
         spending_last = self.spendings_calculate_last_row()
 

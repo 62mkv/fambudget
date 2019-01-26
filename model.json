@@ -238,56 +238,6 @@
           "extract": "day"
         }
       }
-    },
-    {
-      "name": "fambudget",
-      "label": "Family Budget",
-      "dimensions": [
-        "subject",
-        "item",
-        "spent_on",
-        "currency"
-      ],
-      "measures": [
-        {
-          "name": "amount",
-          "label": "Amount"
-        }
-      ],
-      "aggregates": [
-        {
-          "name": "amount_sum",
-          "function": "sum",
-          "measure": "amount"
-        },
-        {
-          "name": "record_count",
-          "function": "count"
-        }
-      ],
-      "mappings": {
-        "item.subcount1": "subcount1",
-        "item.subcount2": "subcount2",
-        "item.category": "category",
-        "spent_on.year": {
-          "column": "spent_on",
-          "extract": "year"
-        },
-        "spent_on.month": {
-          "column": "spent_on",
-          "extract": "month"
-        },
-        "spent_on.week": {
-          "column": "spent_on",
-          "extract": "week"
-        },
-        "spent_on.day": {
-          "column": "spent_on",
-          "extract": "day"
-        }
-      },
-      "info": {
-      }
     }
   ]
 }
