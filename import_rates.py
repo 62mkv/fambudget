@@ -16,8 +16,8 @@ Currently, script was used to populate data:
   select row_index, amount, currency from fambudget
 """
 # DONE: update model.json to support normalized tables (spendings/spending_amounts)
-# TODO: update model.json: add cube for aggregated (multi-currency) table
-# TODO: implement import from cbr API
+# DONE: update model.json: add cube for aggregated (multi-currency) table
+# DONE: implement import from cbr API
 from datetime import timedelta
 
 from openpyxl.reader import excel
@@ -58,4 +58,6 @@ def read_values(filename):
 
 table = repository.CurrencyRates('sqlite:///data/data.sqlite')
 # table.fill_table_with_records(read_values("source-data/RC_F01_01_2008_T05_07_2018.xlsx"))
-table.fill_table_with_records(read_values("source-data/RC_F05_07_2018_T12_01_2019.xlsx"))
+# table.fill_table_with_records(read_values("source-data/RC_F05_07_2018_T12_01_2019.xlsx"))
+# table.fill_table_with_records(read_values("source-data/RC_F11_01_2019_T29_01_2019.xlsx"))
+table.fill_table_with_records(read_values("source-data/RC_F29_01_2019_T16_02_2019.xlsx"))

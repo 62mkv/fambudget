@@ -24,19 +24,21 @@ class Aggregator:
         self.spending_multi_currency_amounts.delete_data_since_row(row_for_last_date)
 
         # calculate last row_index of the aggregated table
-        agg_last = self.agg_calculate_last_row()
+        last_aggregated_row = self.agg_calculate_last_row()
+        print('Last aggregated row is', self.get_date_for_row(last_aggregated_row))
 
         # calculate last row_index in spendings
-        spending_last = self.spendings_calculate_last_row()
+        last_spendings_row = self.spendings_calculate_last_row()
+        print('Aggregating spendings till', self.get_date_for_row(last_spendings_row))
 
         # delete row for this row_index from the aggregated table (only makes sense for the first one)
-        self.spending_multi_currency_amounts.delete_data_since_row(agg_last)
+        self.spending_multi_currency_amounts.delete_data_since_row(last_aggregated_row)
 
         # determine rows one needs to convert (every row from last one in the aggregated
         # table to the last one in spendings)
 
         # for each row_index,
-        for row_index in range(agg_last, spending_last):
+        for row_index in range(last_aggregated_row, last_spendings_row):
             try:
                 if (row_index % 100 == 0):
                     print("Processing row ", row_index)
