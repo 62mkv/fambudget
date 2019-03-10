@@ -2,7 +2,7 @@ from config import config
 from constants import RRU
 from dbtables.repository import SpendingAmountsTable, SpendingMultiCurrencyAmounts, SpendingsTable, CurrencyRates
 from dbtables.structure import SpendingAmount, Spending
-from .exceptions import SpendingRowNotFound
+from .exceptions import SpendingRowNotFound, NoMoreCurrencyRates
 
 
 class Aggregator:
@@ -37,12 +37,16 @@ class Aggregator:
         # determine rows one needs to convert (every row from last one in the aggregated
         # table to the last one in spendings)
 
+        last_date_with_rate = self.rates.get_latest_record_date()
+        print("Rates are available till", last_date_with_rate)
         # for each row_index,
         for row_index in range(last_aggregated_row, last_spendings_row):
             try:
                 if (row_index % 100 == 0):
                     print("Processing row ", row_index)
                 spent_on = self.get_date_for_row(row_index)
+                if spent_on > last_date_with_rate:
+                    raise NoMoreCurrencyRates
                 # initialize 0 records for each currency
                 multi_currency_dict = dict(zip(self.currencies, (0,) * len(self.currencies)))
 
@@ -76,7 +80,6 @@ class Aggregator:
             exchange_rate = self.get_exchange_rate_for_date(currency_from, currency_to, date)
             return float(amount) / float(exchange_rate)
 
-    # TODO: provide implementation
     def get_date_for_row(self, row_index):
         record = self.spendings.get_records_with_row_index(row_index).fetchone()
         if record is None:
@@ -84,11 +87,9 @@ class Aggregator:
         spending = Spending(*record)
         return spending.spent_on
 
-    # TODO: provide implementation
     def get_exchange_rate_for_date(self, currency_from, currency_to, date):
         if currency_from == RRU:
             rate = self.rates.get_rate_for_date(currency_from, currency_to, date)
         else:
             rate = 1 / self.rates.get_rate_for_date(currency_to, currency_from, date)
-        # print(currency_from, currency_to, date, rate)
         return rate

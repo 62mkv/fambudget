@@ -45,7 +45,7 @@ def read_values(filename):
 
     while ws.cell(row, 1).value is not None:
         next_date = ws.cell(row, 2).value
-        while next_date > current_date:
+        while next_date >= current_date:
             names = ('base_currency', 'other_currency', 'rate', 'date')
             values = ( RRU, EUR, current_rate, current_date)
             record = dict(zip(names, values))
@@ -60,4 +60,5 @@ table = repository.CurrencyRates('sqlite:///data/data.sqlite')
 # table.fill_table_with_records(read_values("source-data/RC_F01_01_2008_T05_07_2018.xlsx"))
 # table.fill_table_with_records(read_values("source-data/RC_F05_07_2018_T12_01_2019.xlsx"))
 # table.fill_table_with_records(read_values("source-data/RC_F11_01_2019_T29_01_2019.xlsx"))
-table.fill_table_with_records(read_values("source-data/RC_F29_01_2019_T16_02_2019.xlsx"))
+# table.fill_table_with_records(read_values("source-data/RC_F29_01_2019_T16_02_2019.xlsx"))
+table.fill_table_with_records(read_values("source-data/currency-rates/RC_F16_02_2019_T08_03_2019.xlsx"))

@@ -121,11 +121,11 @@ class TableWithDateField(Repository):
         return processed_date
 
     def get_latest_record_date(self):
-        starting_date = self.engine \
-            .execute(sqlalchemy.select([sqlalchemy.func.max(self.table.c.spent_on)])) \
+        last_date = self.engine \
+            .execute(sqlalchemy.select([sqlalchemy.func.max(self.table.c[self.date_column_name])])) \
             .fetchone()[0]
 
-        return starting_date
+        return last_date
 
     def delete_data_since_date(self, start_date):
         if start_date:
