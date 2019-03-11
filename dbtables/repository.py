@@ -2,7 +2,7 @@ import sqlalchemy
 from sqlalchemy.sql import func
 from sqlalchemy.sql.expression import select
 
-from constants import SINGLE_CURRENCY, MULTI_CURRENCY, EXCHANGE_RATE, SPENDINGS, SPENDING_AMOUNTS
+from constants import MULTI_CURRENCY, EXCHANGE_RATE, SPENDINGS, SPENDING_AMOUNTS
 
 SPENDING_AMOUNTS_SCHEMA = [
     ("row_index", "integer"),
@@ -11,16 +11,6 @@ SPENDING_AMOUNTS_SCHEMA = [
 ]
 
 SCHEMA = {
-    SINGLE_CURRENCY: [
-        ("row_index", "integer"),
-        ("spent_on", "date"),
-        ("subject", "string"),
-        ("category", "string"),
-        ("subcount1", "string"),
-        ("subcount2", "string"),
-        ("currency", "string"),
-        ("amount", "float"),
-    ],
     MULTI_CURRENCY: SPENDING_AMOUNTS_SCHEMA,
     EXCHANGE_RATE: [
         ("base_currency", "string"),
@@ -133,11 +123,6 @@ class TableWithDateField(Repository):
                 .execute(sqlalchemy.sql.expression.delete(self.table).where(self.table.c.spent_on >= start_date))
 
 
-class SingleCurrencyTable(TableWithDateField):
-    def __init__(self, filename):
-        super().__init__(filename, SINGLE_CURRENCY)
-
-
 class SpendingsTable(RowIndexTable, TableWithDateField):
     def __init__(self, filename):
         super(RowIndexTable, self).__init__(filename, SPENDINGS)
@@ -165,8 +150,8 @@ class CurrencyRates(TableWithDateField):
         super().__init__(filename, EXCHANGE_RATE, 'date')
 
     def get_rate_for_date(self, currency_from, currency_to, date):
-        return self.engine.execute(sqlalchemy.select([self.table.c.rate])
-                                   .where((self.table.c[self.date_column_name] == date)
-                                          & (self.table.c.base_currency == currency_from)
-                                          & (self.table.c.other_currency == currency_to)
-                                          )).fetchone()[0]
+        return float(self.engine.execute(sqlalchemy.select([self.table.c.rate])
+                                         .where((self.table.c[self.date_column_name] == date)
+                                                & (self.table.c.base_currency == currency_from)
+                                                & (self.table.c.other_currency == currency_to)
+                                                )).fetchone()[0])

@@ -4,3 +4,7 @@ class SpendingRowNotFound(Exception):
 
 class NoMoreCurrencyRates(Exception):
     pass
+
+
+class UnknownCurrency(Exception):
+    pass

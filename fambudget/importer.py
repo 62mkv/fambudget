@@ -1,18 +1,4 @@
-from dbtables.repository import SingleCurrencyTable, SpendingsTable, SpendingAmountsTable
-
-
-class FambudgetImporter:
-    def __init__(self, dbfile):
-        self.repo = SingleCurrencyTable(dbfile)
-
-    def get_last_date(self):
-        return self.repo.get_latest_record_date()
-
-    def delete_data_since_date(self, start_date):
-        return self.repo.delete_data_since_date(start_date)
-
-    def import_records_from_iterator(self, iterator):
-        return self.repo.fill_table_with_records(iterator)
+from dbtables.repository import SpendingsTable, SpendingAmountsTable
 
 
 class NormalizedImporter:

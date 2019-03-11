@@ -2,7 +2,7 @@ from config import config
 from constants import RRU
 from dbtables.repository import SpendingAmountsTable, SpendingMultiCurrencyAmounts, SpendingsTable, CurrencyRates
 from dbtables.structure import SpendingAmount, Spending
-from .exceptions import SpendingRowNotFound, NoMoreCurrencyRates
+from exceptions import SpendingRowNotFound, NoMoreCurrencyRates
 
 
 class Aggregator:
