@@ -1,12 +1,15 @@
 ﻿import argparse
+import logging
 import os
 import time
 from datetime import datetime
 
 from config import config
-from fambudget import budgetparser
 from fambudget.aggregator import Aggregator
+from fambudget.budgetparser import BudgetParser
 from fambudget.importer import NormalizedImporter
+
+logging.basicConfig(level=logging.DEBUG)
 
 DATABASE_FILE = config['database']
 
@@ -18,20 +21,20 @@ args = argparser.parse_args()
 path = os.path.dirname(__file__)
 filename = args.filename or (path + config['default_filename'])
 
-parser = budgetparser.BudgetParser(filename, config)
+parser = BudgetParser(filename, config)
 
 
 def import_data(importer, title, last_date, iterator_retriever):
-    print('Parsing XLS file', filename, 'from date', last_date)
+    logging.info('Parsing XLS file %s from date %s', filename, last_date)
     start = time.time()
 
     importer.delete_data_since_date(last_date)
 
     new_last_date = importer.import_records_from_iterator(iterator_retriever(last_date))
-    print('Parsing XLS file for ', title, 'completed; last processed date is', new_last_date)
+    logging.info('Parsing XLS file for %s completed; last processed date is %s', title, new_last_date)
 
     end = time.time()
-    print('Processing took', end - start, 'seconds')
+    logging.info('Processing took %s seconds', end - start)
 
 
 importer = NormalizedImporter(DATABASE_FILE)
@@ -45,10 +48,9 @@ if args.fromdate:
     else:
         last_date = fromdate
 
-# import_data(FambudgetImporter(DATABASE_FILE), "fambudget table", lambda x: parser.process_next_record(x))
 import_data(importer, "normalized tables", last_date, lambda x: parser.retrieve_spending_info(x))
 
 aggregator = Aggregator(DATABASE_FILE)
-print('Beginning aggregation of data')
+logging.info('Beginning aggregation of data')
 aggregator.aggregate_spendings_since_date(last_date)
-print('Aggregation of data complete')
+logging.info('Aggregation of data complete')

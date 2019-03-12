@@ -1,5 +1,8 @@
+import logging
+
 from config import config
 from constants import RRU
+from currency.importer import CurrencyRatesImporter
 from dbtables.repository import SpendingAmountsTable, SpendingMultiCurrencyAmounts, SpendingsTable, CurrencyRates
 from dbtables.structure import SpendingAmount, Spending
 from exceptions import SpendingRowNotFound, NoMoreCurrencyRates
@@ -12,6 +15,13 @@ class Aggregator:
         self.spendings = SpendingsTable(filename)
         self.rates = CurrencyRates(filename)
         self.currencies = config['currency_sets'].values()
+        self.currency_importers = [
+            CurrencyRatesImporter(filename, c) for c in self.currencies if c != RRU
+        ]
+
+    def update_rates(self, till_date):
+        for currency_importer in self.currency_importers:
+            currency_importer.read_rates_from_cbr(till_date)
 
     def aggregate_spendings_since_date(self, last_date):
         """
@@ -25,11 +35,12 @@ class Aggregator:
 
         # calculate last row_index of the aggregated table
         last_aggregated_row = self.agg_calculate_last_row()
-        print('Last aggregated row is', self.get_date_for_row(last_aggregated_row))
+        logging.info('Last aggregated row is %s', self.get_date_for_row(last_aggregated_row))
 
         # calculate last row_index in spendings
         last_spendings_row = self.spendings_calculate_last_row()
-        print('Aggregating spendings till', self.get_date_for_row(last_spendings_row))
+        last_spendings_date = self.get_date_for_row(last_spendings_row)
+        logging.info('Aggregating spendings till %s', last_spendings_date)
 
         # delete row for this row_index from the aggregated table (only makes sense for the first one)
         self.spending_multi_currency_amounts.delete_data_since_row(last_aggregated_row)
@@ -37,16 +48,13 @@ class Aggregator:
         # determine rows one needs to convert (every row from last one in the aggregated
         # table to the last one in spendings)
 
-        last_date_with_rate = self.rates.get_latest_record_date()
-        print("Rates are available till", last_date_with_rate)
+        self.update_rates(last_spendings_date)
         # for each row_index,
-        for row_index in range(last_aggregated_row, last_spendings_row):
+        for row_index in range(last_aggregated_row, last_spendings_row + 1):
             try:
-                if (row_index % 100 == 0):
-                    print("Processing row ", row_index)
+                if row_index % 100 == 0:
+                    logging.debug('Processing row %d', row_index)
                 spent_on = self.get_date_for_row(row_index)
-                if spent_on > last_date_with_rate:
-                    raise NoMoreCurrencyRates
                 # initialize 0 records for each currency
                 multi_currency_dict = dict(zip(self.currencies, (0,) * len(self.currencies)))
 
@@ -77,8 +85,11 @@ class Aggregator:
         if currency_from == currency_to:
             return amount
         else:
-            exchange_rate = self.get_exchange_rate_for_date(currency_from, currency_to, date)
-            return float(amount) / float(exchange_rate)
+            try:
+                exchange_rate = self.get_exchange_rate_for_date(currency_from, currency_to, date)
+                return float(amount) / float(exchange_rate)
+            except BaseException:
+                raise NoMoreCurrencyRates
 
     def get_date_for_row(self, row_index):
         record = self.spendings.get_records_with_row_index(row_index).fetchone()
