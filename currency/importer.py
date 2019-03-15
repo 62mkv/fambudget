@@ -1,3 +1,4 @@
+import logging
 from datetime import timedelta
 
 from openpyxl.reader import excel
@@ -9,6 +10,7 @@ from dbtables.repository import CurrencyRates
 
 class CurrencyRatesImporter:
     def __init__(self, dbfile, other_currency):
+        logging.info('CurrencyRatesImporter is created for %s', other_currency)
         self.rates_table = CurrencyRates(dbfile)
         self.base_currency = RRU
         self.other_currency = other_currency
@@ -22,6 +24,8 @@ class CurrencyRatesImporter:
         :param filename: like source-data/RC_F01_01_2008_T05_07_2018.xlsx
         :return:
         """
+        raise BaseException('This method has unresolved issues and needs to be fixed!')
+
         wb = excel.load_workbook(filename=filename)
 
         ws = wb.worksheets[0]
@@ -39,6 +43,7 @@ class CurrencyRatesImporter:
             yield record
 
     def read_rates_from_cbr(self, till_date):
+        logging.info('Updating currency rates for %s till %s', self.other_currency, till_date)
         last_present_date = self.rates_table.get_latest_record_date()
 
         names = ('base_currency', 'other_currency', 'rate', 'date')
@@ -71,7 +76,7 @@ class CurrencyRatesImporter:
     def import_rates_from_xls(self, filename):
         self.rates_table.fill_table_with_records(
             self.fill_missing_dates(
-                self.read_values_from_excel(filename)
+                self.read_values_from_xls(filename)
             )
         )
 

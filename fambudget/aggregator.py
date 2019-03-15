@@ -20,8 +20,10 @@ class Aggregator:
         ]
 
     def update_rates(self, till_date):
+        logging.info('Updating currency rates till %s', till_date)
         for currency_importer in self.currency_importers:
-            currency_importer.read_rates_from_cbr(till_date)
+            logging.info('Calling read rates for %s', currency_importer.other_currency)
+            currency_importer.import_rates_from_cbr(till_date)
 
     def aggregate_spendings_since_date(self, last_date):
         """
