@@ -3,6 +3,7 @@ from sqlalchemy.sql import func
 from sqlalchemy.sql.expression import select
 
 from constants import MULTI_CURRENCY, EXCHANGE_RATE, SPENDINGS, SPENDING_AMOUNTS
+from exceptions import NoMoreCurrencyRates
 
 SPENDING_AMOUNTS_SCHEMA = [
     ("row_index", "integer"),
@@ -150,8 +151,12 @@ class CurrencyRates(TableWithDateField):
         super().__init__(filename, EXCHANGE_RATE, 'date')
 
     def get_rate_for_date(self, currency_from, currency_to, date):
-        return float(self.engine.execute(sqlalchemy.select([self.table.c.rate])
-                                         .where((self.table.c[self.date_column_name] == date)
-                                                & (self.table.c.base_currency == currency_from)
-                                                & (self.table.c.other_currency == currency_to)
-                                                )).fetchone()[0])
+        results = self.engine.execute(sqlalchemy.select([self.table.c.rate])
+                                      .where((self.table.c[self.date_column_name] == date)
+                                             & (self.table.c.base_currency == currency_from)
+                                             & (self.table.c.other_currency == currency_to)
+                                             )).fetchone()
+        if results is None:
+            raise NoMoreCurrencyRates(currency_from, currency_to, date)
+        else:
+            return float(results[0])

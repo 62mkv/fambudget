@@ -5,7 +5,7 @@ from constants import RRU
 from currency.importer import CurrencyRatesImporter
 from dbtables.repository import SpendingAmountsTable, SpendingMultiCurrencyAmounts, SpendingsTable, CurrencyRates
 from dbtables.structure import SpendingAmount, Spending
-from exceptions import SpendingRowNotFound, NoMoreCurrencyRates
+from exceptions import SpendingRowNotFound
 
 
 class Aggregator:
@@ -87,11 +87,8 @@ class Aggregator:
         if currency_from == currency_to:
             return amount
         else:
-            try:
-                exchange_rate = self.get_exchange_rate_for_date(currency_from, currency_to, date)
-                return float(amount) / float(exchange_rate)
-            except BaseException:
-                raise NoMoreCurrencyRates
+            exchange_rate = self.get_exchange_rate_for_date(currency_from, currency_to, date)
+            return float(amount) / float(exchange_rate)
 
     def get_date_for_row(self, row_index):
         record = self.spendings.get_records_with_row_index(row_index).fetchone()
